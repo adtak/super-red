@@ -29,6 +29,10 @@ npx expo start --web
 # Lint
 npx expo lint
 
+# Format
+pnpm format          # format all files (write)
+pnpm format:check    # check formatting (CI)
+
 # Reset project (clears template code)
 node ./scripts/reset-project.js
 ```
@@ -63,6 +67,12 @@ Routes live in `app/`. Directory structure maps directly to URL structure.
 - `IconSymbol` maps SF Symbols (iOS) to Material Icons (Android/web) — mapping defined in `components/ui/icon-symbol.tsx`
 - `HapticTab` provides haptic feedback on tab press (iOS only)
 - `ExternalLink` opens in-app browser on native, default browser on web
+
+### Linting & Formatting
+
+- **ESLint** (`npx expo lint`) — Linting only. Kept for Expo-specific rules and React Compiler integration
+- **Biome** (`pnpm format`) — Formatter only (linter disabled in `biome.json`). Also handles import sorting
+- The two tools have fully separated roles with no conflicts
 
 ### Import Aliases
 
