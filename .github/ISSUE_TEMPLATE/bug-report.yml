@@ -1,0 +1,64 @@
+name: Bug Report
+description: バグを報告する
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: バグの説明
+      description: バグの内容を簡潔に説明してください
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 再現手順
+      description: バグを再現するための手順を記載してください
+      placeholder: |
+        1. '...' に移動
+        2. '...' をタップ
+        3. '...' までスクロール
+        4. エラーが発生
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待される動作
+      description: 本来どのように動作すべきか説明してください
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: platform
+    attributes:
+      label: プラットフォーム
+      description: バグが発生するプラットフォームを選択してください
+      options:
+        - label: iOS
+        - label: Android
+        - label: Web
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 環境情報
+      description: デバイス名、OS バージョン、Expo SDK バージョンなど
+      placeholder: |
+        - デバイス: iPhone 16 Pro
+        - OS: iOS 18.2
+        - Expo SDK: 54
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: スクリーンショット・ログ
+      description: スクリーンショットやエラーログがあれば添付してください
+    validations:
+      required: false
