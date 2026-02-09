@@ -1,41 +1,41 @@
 name: Bug Report
-description: バグを報告する
+description: Report a bug
 labels: ["bug"]
 body:
   - type: textarea
     id: description
     attributes:
-      label: バグの説明
-      description: バグの内容を簡潔に説明してください
+      label: Bug Description
+      description: Briefly describe the bug
     validations:
       required: true
 
   - type: textarea
     id: reproduction
     attributes:
-      label: 再現手順
-      description: バグを再現するための手順を記載してください
+      label: Steps to Reproduce
+      description: Describe the steps to reproduce the bug
       placeholder: |
-        1. '...' に移動
-        2. '...' をタップ
-        3. '...' までスクロール
-        4. エラーが発生
+        1. Go to '...'
+        2. Tap on '...'
+        3. Scroll to '...'
+        4. Error occurs
     validations:
       required: true
 
   - type: textarea
     id: expected
     attributes:
-      label: 期待される動作
-      description: 本来どのように動作すべきか説明してください
+      label: Expected Behavior
+      description: Describe how it should work
     validations:
       required: true
 
   - type: checkboxes
     id: platform
     attributes:
-      label: プラットフォーム
-      description: バグが発生するプラットフォームを選択してください
+      label: Platform
+      description: Select the platform(s) where the bug occurs
       options:
         - label: iOS
         - label: Android
@@ -46,10 +46,10 @@ body:
   - type: textarea
     id: environment
     attributes:
-      label: 環境情報
-      description: デバイス名、OS バージョン、Expo SDK バージョンなど
+      label: Environment
+      description: Device name, OS version, Expo SDK version, etc.
       placeholder: |
-        - デバイス: iPhone 16 Pro
+        - Device: iPhone 16 Pro
         - OS: iOS 18.2
         - Expo SDK: 54
     validations:
@@ -58,7 +58,7 @@ body:
   - type: textarea
     id: additional
     attributes:
-      label: スクリーンショット・ログ
-      description: スクリーンショットやエラーログがあれば添付してください
+      label: Screenshots / Logs
+      description: Attach screenshots or error logs if available
     validations:
       required: false

@@ -1,25 +1,25 @@
-## 概要
+## Summary
 
-<!-- この PR で何を変更したか簡潔に説明してください -->
+<!-- Briefly describe what this PR changes -->
 
-## 変更の種類
+## Change Type
 
-- [ ] バグ修正
-- [ ] 新機能
-- [ ] リファクタリング
-- [ ] ドキュメント更新
-- [ ] その他
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Refactoring
+- [ ] Documentation update
+- [ ] Other
 
-## 動作確認
+## Testing
 
 - [ ] iOS
 - [ ] Android
 - [ ] Web
 
-## スクリーンショット
+## Screenshots
 
-<!-- UI の変更がある場合はスクリーンショットを添付してください -->
+<!-- Attach screenshots if there are UI changes -->
 
-## 補足
+## Notes
 
-<!-- レビュアーに伝えたいことがあれば記載してください -->
+<!-- Add anything reviewers should know -->
