@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Language
+
+- Conversation with the user: **Japanese**
+- Git commit messages, PR titles/descriptions, code comments, CLAUDE.md, and other project artifacts: **English**
+
 ## Project Overview
 
 Expo/React Native app (super-red) using Expo SDK 54, React 19, React Native 0.81, and TypeScript (strict mode). Package manager is **pnpm**.
@@ -80,4 +85,28 @@ Use `@/` to import from the project root (configured in `tsconfig.json`):
 
 ```typescript
 import { ThemedText } from "@/components/themed-text";
+```
+
+## Git Workflow
+
+### Branching Strategy
+
+- **main** — production branch. Never commit directly to main.
+- Create a feature branch from `main` for every change.
+- Branch names: kebab-case, descriptive (e.g., `add-user-profile`, `fix-tab-navigation`).
+- After work is complete, open a PR to merge back into `main`.
+
+### Commits
+
+- Keep commits small and focused — each commit should represent a single logical change.
+- Do not bundle unrelated changes into one commit.
+
+### Before Pushing
+
+Run these checks locally — they also run in CI on every PR:
+
+```bash
+npx expo lint          # ESLint
+pnpm format:check      # Biome format check
+npx tsc --noEmit       # TypeScript type check
 ```
