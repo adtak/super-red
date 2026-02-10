@@ -14,19 +14,21 @@ Create an implementation plan for GitHub issue #$ARGUMENTS.
 
 1. **Read the issue** — Run `gh issue view $ARGUMENTS` to get the issue title, body, and labels.
 
-2. **Understand the context** — Based on the issue description, explore the codebase to understand:
+2. **Grasp the project status** — Run `gh issue list` to see open issues and understand where this issue fits in the overall project roadmap.
+
+3. **Understand the context** — Based on the issue description, explore the codebase to understand:
    - Which files are relevant
    - Current architecture and patterns (refer to CLAUDE.md)
    - Dependencies and constraints
 
-3. **Clarify unknowns** — If the issue is unclear, missing information, or there are multiple valid approaches, ask the user before proceeding. Do not make assumptions on ambiguous points.
+4. **Clarify unknowns** — If the issue is unclear, missing information, or there are multiple valid approaches, ask the user before proceeding. Do not make assumptions on ambiguous points.
 
-4. **Draft the plan** — Write a concrete implementation plan using the template in [plan-template.md](plan-template.md). The plan should be:
+5. **Draft the plan** — Write a concrete implementation plan using the template in [plan-template.md](plan-template.md). The plan should be:
    - Specific enough that another developer (or Claude) can implement it without ambiguity
    - Scoped to only what the issue requires — explicitly call out what is out of scope
    - Written in English (project convention)
 
-5. **Write to the issue** — Update the issue description with the plan using `gh issue edit $ARGUMENTS --body "<plan>"`. Use a HEREDOC for the body to preserve formatting. If the issue already has a description, preserve the existing content and append the plan below it.
+6. **Write to the issue** — Replace the issue description with the plan using `gh issue edit $ARGUMENTS --body "<plan>"`. Use a HEREDOC for the body to preserve formatting. The plan IS the issue description — generate all sections (Summary, Scope, etc.) from scratch based on the issue title and your investigation.
 
 ## Guidelines
 

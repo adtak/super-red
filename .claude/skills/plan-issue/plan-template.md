@@ -1,23 +1,31 @@
-## Plan
+## Summary
 
-### Technical Context
+<!-- Brief description of what this issue is about and why it matters -->
 
-<!-- Technical findings from codebase exploration that are relevant to this implementation.
-     Do NOT repeat the issue description above — focus on architecture, existing patterns, and constraints discovered during investigation. -->
+## Scope
 
-### Approach
+<!-- Bullet list of concrete deliverables -->
 
-<!-- Step-by-step description of the implementation. Each step should be a concrete action. -->
-
-1. **Step name** — Description of what to do and why.
-
-### Files
-
-| Action | Path | Notes |
-|--------|------|-------|
-| Create | `path/to/file.ts` | Description |
-| Modify | `path/to/file.ts` | Description |
-
-### Out of Scope
+## Out of Scope
 
 <!-- Explicitly list what this plan does NOT cover -->
+
+## Technical Context
+
+<!-- Optional: Technical findings from codebase exploration (architecture, existing patterns, constraints).
+     Remove this section if not needed. -->
+
+## Implementation Details
+
+<!-- Step-by-step description of the implementation. Each step should be a concrete action with enough detail for another developer or Claude to implement without ambiguity. -->
+
+### 1. **Step name**
+
+Description of what to do and why.
+
+## Files
+
+| Action | Path |
+|--------|------|
+| Create | `path/to/file.ts` |
+| Modify | `path/to/file.ts` |
