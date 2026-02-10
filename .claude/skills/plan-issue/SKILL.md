@@ -19,17 +19,19 @@ Create an implementation plan for GitHub issue #$ARGUMENTS.
    - Current architecture and patterns (refer to CLAUDE.md)
    - Dependencies and constraints
 
-3. **Draft the plan** — Write a concrete implementation plan using the template in [plan-template.md](plan-template.md). The plan should be:
+3. **Clarify unknowns** — If the issue is unclear, missing information, or there are multiple valid approaches, ask the user before proceeding. Do not make assumptions on ambiguous points.
+
+4. **Draft the plan** — Write a concrete implementation plan using the template in [plan-template.md](plan-template.md). The plan should be:
    - Specific enough that another developer (or Claude) can implement it without ambiguity
    - Scoped to only what the issue requires — explicitly call out what is out of scope
    - Written in English (project convention)
 
-4. **Write to the issue** — Update the issue description with the plan using `gh issue edit $ARGUMENTS --body "<plan>"`. Use a HEREDOC for the body to preserve formatting. If the issue already has a description, preserve the existing content and append the plan below it.
+5. **Write to the issue** — Update the issue description with the plan using `gh issue edit $ARGUMENTS --body "<plan>"`. Use a HEREDOC for the body to preserve formatting. If the issue already has a description, preserve the existing content and append the plan below it.
 
 ## Guidelines
 
 - Keep the plan minimal. Do not over-engineer or add unnecessary steps.
-- If the issue is unclear or missing information, list your assumptions explicitly.
+- If the issue is unclear or missing information, always ask the user rather than assuming.
 - Reference actual file paths discovered during exploration, not guessed paths.
 - For each file change, specify whether it is Create, Modify, or Delete.
 - Do not include full code in the plan — describe what changes are needed and why.
