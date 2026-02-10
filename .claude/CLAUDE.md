@@ -19,24 +19,30 @@ Key experimental features enabled in `app.json`:
 
 ## Development Commands
 
+Always use **pnpm** to run Expo CLI commands (not npx).
+
 ```bash
 # Install dependencies
 pnpm install
 
 # Start Expo development server
-npx expo start
+pnpm expo start
 
 # Run on specific platforms
-npx expo start --ios
-npx expo start --android
-npx expo start --web
+pnpm expo start --ios
+pnpm expo start --android
+pnpm expo start --web
 
 # Lint
-npx expo lint
+pnpm expo lint
 
 # Format
 pnpm format          # format all files (write)
 pnpm format:check    # check formatting (CI)
+
+# Regenerate Expo Router typed routes
+# Run this after adding/removing/renaming route files in app/
+pnpm expo export --platform web
 
 # Reset project (clears template code)
 node ./scripts/reset-project.js
@@ -75,7 +81,7 @@ Routes live in `app/`. Directory structure maps directly to URL structure.
 
 ### Linting & Formatting
 
-- **ESLint** (`npx expo lint`) — Linting only. Kept for Expo-specific rules and React Compiler integration
+- **ESLint** (`pnpm expo lint`) — Linting only. Kept for Expo-specific rules and React Compiler integration
 - **Biome** (`pnpm format`) — Formatter only (linter disabled in `biome.json`). Also handles import sorting
 - The two tools have fully separated roles with no conflicts
 
@@ -106,7 +112,7 @@ import { ThemedText } from "@/components/themed-text";
 Run these checks locally — they also run in CI on every PR:
 
 ```bash
-npx expo lint          # ESLint
+pnpm expo lint         # ESLint
 pnpm format:check      # Biome format check
-npx tsc --noEmit       # TypeScript type check
+pnpm tsc --noEmit      # TypeScript type check
 ```
