@@ -98,7 +98,7 @@ import { ThemedText } from "@/components/themed-text";
 ### Branching Strategy
 
 - **main** — production branch. Never commit directly to main.
-- Create a feature branch from `main` for every change.
+- **Always** create a feature branch from `main` for every change — even if the work depends on an unmerged branch.
 - Branch names: kebab-case, descriptive (e.g., `add-user-profile`, `fix-tab-navigation`).
 - After work is complete, open a PR to merge back into `main`.
 
