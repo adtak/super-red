@@ -1,8 +1,8 @@
 export const Colors = {
-  background: "#0B0B1A", // deep dark navy
+  background: "#2D1B69", // medium purple
   title: "#FF2DF1", // neon magenta
-  text: "#00FFF7", // neon cyan
-  ground: "#1A0A2E", // dark purple base
-  groundMarker: "#BF00FF", // neon purple
-  bgObject: "#12082A", // subtle dark purple
+  text: "#EEFFFC", // bright mint white
+  ground: "#3D2880", // lighter purple base
+  groundMarker: "#CF5FFF", // soft neon purple
+  bgObject: "#362075", // subtle purple
 } as const;
