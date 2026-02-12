@@ -1,7 +1,6 @@
 import type { SharedValue } from "react-native-reanimated";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
-import { Colors } from "@/constants/colors";
-import { CHARACTER_SIZE } from "@/constants/game";
+import { CHARACTER_HEIGHT, CHARACTER_SIZE } from "@/constants/game";
 
 type CharacterProps = {
   y: SharedValue<number>;
@@ -12,14 +11,17 @@ export function Character({ y }: CharacterProps) {
     transform: [{ translateY: y.value }],
   }));
 
-  return <Animated.View style={[styles.character, animatedStyle]} />;
+  return (
+    <Animated.Image
+      source={require("@/assets/images/character.png")}
+      style={[styles.character, animatedStyle]}
+    />
+  );
 }
 
 const styles = {
   character: {
     width: CHARACTER_SIZE,
-    height: CHARACTER_SIZE,
-    backgroundColor: Colors.character,
-    borderRadius: 4,
+    height: CHARACTER_HEIGHT,
   },
 } as const;
