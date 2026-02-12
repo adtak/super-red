@@ -1,4 +1,5 @@
 import { router } from "expo-router";
+import { useRef } from "react";
 import { Dimensions, Pressable, StyleSheet, View } from "react-native";
 import {
   runOnJS,
@@ -38,9 +39,14 @@ export default function Game() {
       (_, i) => SCREEN_WIDTH + BOMB_MIN_GAP * (i + 1),
     ),
   );
+  const startTime = useRef(Date.now());
 
   const navigateToGameOver = () => {
-    router.replace("/game-over");
+    const elapsedSeconds = (Date.now() - startTime.current) / 1000;
+    router.replace({
+      pathname: "/game-over",
+      params: { time: elapsedSeconds.toFixed(1) },
+    });
   };
 
   useAnimatedReaction(
