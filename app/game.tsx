@@ -1,5 +1,11 @@
+import { router } from "expo-router";
 import { Dimensions, Pressable, StyleSheet, View } from "react-native";
-import { useFrameCallback, useSharedValue } from "react-native-reanimated";
+import {
+  runOnJS,
+  useAnimatedReaction,
+  useFrameCallback,
+  useSharedValue,
+} from "react-native-reanimated";
 import { BackgroundObjects } from "@/components/game/background-objects";
 import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
@@ -31,6 +37,19 @@ export default function Game() {
       { length: BOMB_COUNT },
       (_, i) => SCREEN_WIDTH + BOMB_MIN_GAP * (i + 1),
     ),
+  );
+
+  const navigateToGameOver = () => {
+    router.replace("/game-over");
+  };
+
+  useAnimatedReaction(
+    () => isGameOver.value,
+    (current, previous) => {
+      if (current && !previous) {
+        runOnJS(navigateToGameOver)();
+      }
+    },
   );
 
   useFrameCallback(() => {
