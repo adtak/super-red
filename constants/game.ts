@@ -9,3 +9,8 @@ export const SCROLL_SPEED = 4;
 export const GROUND_MARKER_GAP = 40;
 export const BG_OBJECT_COUNT = 4;
 export const BG_OBJECT_SIZE = { width: 20, height: 20 };
+
+export const BOMB_SIZE = 40;
+export const BOMB_COUNT = 3;
+export const BOMB_MIN_GAP = 300;
+export const BOMB_MAX_GAP = 600;

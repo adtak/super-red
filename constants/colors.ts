@@ -6,4 +6,5 @@ export const Colors = {
   ground: "#2D2D4A", // subtle dark purple
   groundMarker: "#3D3D5A",
   bgObject: "#252545",
+  bomb: "#FF6B35",
 } as const;
