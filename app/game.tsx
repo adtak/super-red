@@ -1,9 +1,9 @@
 import { router } from "expo-router";
 import { useRef } from "react";
 import { Dimensions, Pressable, StyleSheet, View } from "react-native";
-import {
+import Animated, {
   runOnJS,
-  useAnimatedReaction,
+  useAnimatedStyle,
   useFrameCallback,
   useSharedValue,
 } from "react-native-reanimated";
@@ -19,10 +19,14 @@ import {
   BOMB_SIZE,
   CHARACTER_LEFT,
   CHARACTER_SIZE,
+  FLASH_PEAK_OPACITY,
+  GAME_OVER_EFFECT_FRAMES,
   GRAVITY,
   GROUND_HEIGHT,
   JUMP_VELOCITY,
   SCROLL_SPEED,
+  SHAKE_FRAMES,
+  SHAKE_INTENSITY,
 } from "@/constants/game";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -41,6 +45,11 @@ export default function Game() {
   );
   const startTime = useRef(Date.now());
 
+  const gameOverFrame = useSharedValue(0);
+  const shakeOffsetX = useSharedValue(0);
+  const shakeOffsetY = useSharedValue(0);
+  const flashOpacity = useSharedValue(0);
+
   const navigateToGameOver = () => {
     const elapsedSeconds = (Date.now() - startTime.current) / 1000;
     router.replace({
@@ -49,17 +58,38 @@ export default function Game() {
     });
   };
 
-  useAnimatedReaction(
-    () => isGameOver.value,
-    (current, previous) => {
-      if (current && !previous) {
+  useFrameCallback(() => {
+    if (isGameOver.value) {
+      gameOverFrame.value += 1;
+      const frame = gameOverFrame.value;
+
+      // Screen shake
+      if (frame <= SHAKE_FRAMES) {
+        shakeOffsetX.value = (Math.random() * 2 - 1) * SHAKE_INTENSITY;
+        shakeOffsetY.value = (Math.random() * 2 - 1) * SHAKE_INTENSITY;
+      } else {
+        shakeOffsetX.value = 0;
+        shakeOffsetY.value = 0;
+      }
+
+      // Screen flash
+      if (frame <= 3) {
+        flashOpacity.value = FLASH_PEAK_OPACITY;
+      } else {
+        const remaining = GAME_OVER_EFFECT_FRAMES - frame;
+        const fadeRange = GAME_OVER_EFFECT_FRAMES - 3;
+        flashOpacity.value = Math.max(
+          0,
+          FLASH_PEAK_OPACITY * (remaining / fadeRange),
+        );
+      }
+
+      // Navigate after effect completes
+      if (frame === GAME_OVER_EFFECT_FRAMES) {
         runOnJS(navigateToGameOver)();
       }
-    },
-  );
-
-  useFrameCallback(() => {
-    if (isGameOver.value) return;
+      return;
+    }
 
     scrollX.value -= SCROLL_SPEED;
 
@@ -108,14 +138,31 @@ export default function Game() {
     isJumping.value = true;
   };
 
+  const shakeStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: shakeOffsetX.value },
+      { translateY: shakeOffsetY.value },
+    ],
+  }));
+
+  const flashStyle = useAnimatedStyle(() => ({
+    opacity: flashOpacity.value,
+  }));
+
   return (
     <Pressable style={styles.container} onPress={handleJump}>
-      <BackgroundObjects scrollX={scrollX} />
-      <Bombs positions={bombPositions} />
-      <View style={styles.character}>
-        <Character y={characterY} />
-      </View>
-      <Ground scrollX={scrollX} />
+      <Animated.View style={[styles.shakeContainer, shakeStyle]}>
+        <BackgroundObjects scrollX={scrollX} />
+        <Bombs positions={bombPositions} />
+        <View style={styles.character}>
+          <Character y={characterY} />
+        </View>
+        <Ground scrollX={scrollX} />
+      </Animated.View>
+      <Animated.View
+        style={[styles.flashOverlay, flashStyle]}
+        pointerEvents="none"
+      />
     </Pressable>
   );
 }
@@ -125,9 +172,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
+  shakeContainer: {
+    flex: 1,
+  },
   character: {
     position: "absolute",
     left: CHARACTER_LEFT,
     bottom: GROUND_HEIGHT,
+  },
+  flashOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: Colors.title,
   },
 });
