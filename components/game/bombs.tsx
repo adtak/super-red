@@ -3,8 +3,12 @@ import Animated, {
   type SharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated";
-import { Colors } from "@/constants/colors";
-import { BOMB_COUNT, BOMB_SIZE, GROUND_HEIGHT } from "@/constants/game";
+import {
+  BOMB_COUNT,
+  BOMB_HEIGHT,
+  BOMB_SIZE,
+  GROUND_HEIGHT,
+} from "@/constants/game";
 
 function Bomb({
   positions,
@@ -18,7 +22,12 @@ function Bomb({
     return { transform: [{ translateX: positions.value[index] }] };
   });
 
-  return <Animated.View style={[styles.bomb, animatedStyle]} />;
+  return (
+    <Animated.Image
+      source={require("@/assets/images/bomb.png")}
+      style={[styles.bomb, animatedStyle]}
+    />
+  );
 }
 
 interface BombsProps {
@@ -45,9 +54,7 @@ const styles = StyleSheet.create({
   bomb: {
     position: "absolute",
     width: BOMB_SIZE,
-    height: BOMB_SIZE,
-    borderRadius: BOMB_SIZE / 2,
-    backgroundColor: Colors.bomb,
+    height: BOMB_HEIGHT,
     bottom: 0,
   },
 });
