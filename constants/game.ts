@@ -14,3 +14,8 @@ export const BOMB_SIZE = 40;
 export const BOMB_COUNT = 3;
 export const BOMB_MIN_GAP = 300;
 export const BOMB_MAX_GAP = 600;
+
+export const GAME_OVER_EFFECT_FRAMES = 30;
+export const SHAKE_FRAMES = 20;
+export const SHAKE_INTENSITY = 10;
+export const FLASH_PEAK_OPACITY = 0.6;
