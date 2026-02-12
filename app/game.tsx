@@ -11,6 +11,7 @@ import {
   BOMB_MIN_GAP,
   BOMB_SIZE,
   CHARACTER_LEFT,
+  CHARACTER_SIZE,
   GRAVITY,
   GROUND_HEIGHT,
   JUMP_VELOCITY,
@@ -23,6 +24,7 @@ export default function Game() {
   const characterY = useSharedValue(0);
   const velocityY = useSharedValue(0);
   const isJumping = useSharedValue(false);
+  const isGameOver = useSharedValue(false);
   const scrollX = useSharedValue(0);
   const bombPositions = useSharedValue(
     Array.from(
@@ -32,6 +34,8 @@ export default function Game() {
   );
 
   useFrameCallback(() => {
+    if (isGameOver.value) return;
+
     scrollX.value -= SCROLL_SPEED;
 
     // Move bombs
@@ -47,6 +51,19 @@ export default function Game() {
     }
     bombPositions.value = positions;
 
+    // Collision detection (AABB)
+    for (let i = 0; i < positions.length; i++) {
+      const bombX = positions[i];
+      const horizontalOverlap =
+        CHARACTER_LEFT < bombX + BOMB_SIZE &&
+        CHARACTER_LEFT + CHARACTER_SIZE > bombX;
+      const verticalOverlap = characterY.value > -BOMB_SIZE;
+      if (horizontalOverlap && verticalOverlap) {
+        isGameOver.value = true;
+        return;
+      }
+    }
+
     if (!isJumping.value) return;
 
     velocityY.value += GRAVITY;
@@ -60,6 +77,7 @@ export default function Game() {
   });
 
   const handleJump = () => {
+    if (isGameOver.value) return;
     if (isJumping.value) return;
     velocityY.value = JUMP_VELOCITY;
     isJumping.value = true;
