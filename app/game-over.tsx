@@ -8,7 +8,12 @@ export default function GameOver() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>GAME OVER</Text>
-      {time && <Text style={styles.time}>{time}s</Text>}
+      {time && (
+        <>
+          <Text style={styles.survivedLabel}>SURVIVED</Text>
+          <Text style={styles.time}>{time}s</Text>
+        </>
+      )}
       <Pressable
         style={styles.retryButton}
         onPress={() => router.replace("/game")}
@@ -32,8 +37,15 @@ const styles = StyleSheet.create({
     letterSpacing: 4,
     color: Colors.title,
   },
+  survivedLabel: {
+    marginTop: 40,
+    fontSize: 20,
+    fontWeight: "700",
+    letterSpacing: 3,
+    color: Colors.text,
+  },
   time: {
-    marginTop: 16,
+    marginTop: 8,
     fontSize: 28,
     fontWeight: "700",
     letterSpacing: 2,
