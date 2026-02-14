@@ -1,6 +1,7 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Colors } from "@/constants/colors";
+import { Typography } from "@/constants/typography";
 import { useHighScore } from "@/hooks/use-high-score";
 
 export default function GameOver() {
@@ -43,16 +44,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 48,
-    fontWeight: "900",
-    letterSpacing: 4,
+    ...Typography.title,
     color: Colors.title,
   },
   survivedLabel: {
+    ...Typography.label,
     marginTop: 40,
-    fontSize: 20,
-    fontWeight: "700",
-    letterSpacing: 3,
     color: Colors.text,
   },
   scoreRow: {
@@ -62,37 +59,30 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   time: {
-    fontSize: 28,
-    fontWeight: "700",
-    letterSpacing: 2,
+    ...Typography.score,
     color: Colors.text,
   },
   newBadge: {
-    fontSize: 20,
+    ...Typography.label,
     fontWeight: "900",
     letterSpacing: 2,
     color: Colors.title,
   },
   bestLabel: {
+    ...Typography.label,
     marginTop: 24,
-    fontSize: 20,
-    fontWeight: "700",
-    letterSpacing: 3,
     color: Colors.text,
   },
   bestTime: {
+    ...Typography.score,
     marginTop: 8,
-    fontSize: 28,
-    fontWeight: "700",
-    letterSpacing: 2,
     color: Colors.text,
   },
   retryButton: {
     marginTop: 32,
   },
   retryText: {
-    fontSize: 18,
-    letterSpacing: 3,
+    ...Typography.body,
     color: Colors.text,
   },
 });

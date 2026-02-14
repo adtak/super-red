@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Colors } from "@/constants/colors";
+import { Typography } from "@/constants/typography";
 
 export default function Index() {
   return (
@@ -24,14 +25,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 48,
-    fontWeight: "900",
-    letterSpacing: 4,
+    ...Typography.title,
     color: Colors.title,
   },
   tapToStart: {
-    fontSize: 18,
-    letterSpacing: 3,
+    ...Typography.body,
     color: Colors.text,
     marginTop: 32,
   },
