@@ -5,8 +5,11 @@ import Animated, {
 } from "react-native-reanimated";
 import { Colors } from "@/constants/colors";
 import {
+  BG_OBJECT_BASE_OFFSET,
+  BG_OBJECT_BORDER_RADIUS,
   BG_OBJECT_COUNT,
   BG_OBJECT_SIZE,
+  BG_OBJECT_Y_SPACING,
   GROUND_HEIGHT,
 } from "@/constants/game";
 
@@ -16,7 +19,7 @@ const TOTAL_WIDTH = SCREEN_WIDTH + BG_OBJECT_SIZE.width;
 const OBJECTS = Array.from({ length: BG_OBJECT_COUNT }, (_, i) => ({
   id: i,
   xOffset: (SCREEN_WIDTH / BG_OBJECT_COUNT) * i,
-  y: GROUND_HEIGHT + 40 + i * 50,
+  y: GROUND_HEIGHT + BG_OBJECT_BASE_OFFSET + i * BG_OBJECT_Y_SPACING,
 }));
 
 interface BackgroundObjectsProps {
@@ -70,6 +73,6 @@ const styles = StyleSheet.create({
     width: BG_OBJECT_SIZE.width,
     height: BG_OBJECT_SIZE.height,
     backgroundColor: Colors.bgObject,
-    borderRadius: 4,
+    borderRadius: BG_OBJECT_BORDER_RADIUS,
   },
 });

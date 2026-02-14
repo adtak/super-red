@@ -11,6 +11,9 @@ export const SCROLL_SPEED_MAX = 5;
 export const GROUND_MARKER_GAP = 40;
 export const BG_OBJECT_COUNT = 4;
 export const BG_OBJECT_SIZE = { width: 20, height: 20 };
+export const BG_OBJECT_BASE_OFFSET = 40;
+export const BG_OBJECT_Y_SPACING = 50;
+export const BG_OBJECT_BORDER_RADIUS = 4;
 
 export const BOMB_SIZE = 40;
 export const BOMB_HEIGHT = 60;
