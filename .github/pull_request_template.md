@@ -1,25 +1,9 @@
 ## Summary
 
-<!-- Briefly describe what this PR changes -->
+<!-- Bullet points describing what this PR changes and why -->
 
-## Change Type
+## Test plan
 
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Refactoring
-- [ ] Documentation update
-- [ ] Other
+<!-- Checklist of manual verification steps -->
 
-## Testing
-
-- [ ] iOS
-- [ ] Android
-- [ ] Web
-
-## Screenshots
-
-<!-- Attach screenshots if there are UI changes -->
-
-## Notes
-
-<!-- Add anything reviewers should know -->
+- [ ]

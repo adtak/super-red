@@ -3,33 +3,60 @@ description: Suggest a new feature
 labels: ["enhancement"]
 body:
   - type: textarea
-    id: problem
+    id: summary
     attributes:
-      label: Problem to Solve
-      description: What problem or inconvenience would this solve?
+      label: Summary
+      description: What feature do you want to add? Describe the goal briefly.
     validations:
       required: true
 
   - type: textarea
-    id: solution
+    id: scope
     attributes:
-      label: Proposed Solution
-      description: What feature or improvement do you suggest?
+      label: Scope
+      description: List what is included in this feature.
+      placeholder: |
+        - Item A
+        - Item B
     validations:
       required: true
 
   - type: textarea
-    id: alternatives
+    id: out-of-scope
     attributes:
-      label: Alternatives Considered
-      description: Describe any alternative solutions you considered
+      label: Out of Scope
+      description: List what is explicitly excluded from this feature.
+      placeholder: |
+        - Item X
+        - Item Y
     validations:
       required: false
 
   - type: textarea
-    id: additional
+    id: technical-context
     attributes:
-      label: Additional Context
-      description: Add any other context, links, or screenshots
+      label: Technical Context
+      description: Relevant existing code, libraries, patterns, or constraints.
+    validations:
+      required: false
+
+  - type: textarea
+    id: implementation-details
+    attributes:
+      label: Implementation Details
+      description: Step-by-step breakdown of the implementation plan.
+    validations:
+      required: false
+
+  - type: textarea
+    id: files
+    attributes:
+      label: Files
+      description: List of files to create or modify.
+      placeholder: |
+        | Action | Path |
+        |--------|------|
+        | Create | `path/to/new-file.ts` |
+        | Modify | `path/to/existing-file.ts` |
     validations:
       required: false
