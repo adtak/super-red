@@ -1,3 +1,4 @@
+import { StyleSheet } from "react-native";
 import type { SharedValue } from "react-native-reanimated";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import { CHARACTER_HEIGHT, CHARACTER_SIZE } from "@/constants/game";
@@ -19,9 +20,9 @@ export function Character({ y }: CharacterProps) {
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   character: {
     width: CHARACTER_SIZE,
     height: CHARACTER_HEIGHT,
   },
-} as const;
+});
