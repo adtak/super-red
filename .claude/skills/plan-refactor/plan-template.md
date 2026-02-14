@@ -1,5 +1,3 @@
-<!-- This template defines the structure for each GitHub issue created by plan-refactor. -->
-
 ## Context
 
 <!-- What is the current state and why does it need to change? Reference specific files and line numbers. -->
@@ -12,8 +10,9 @@
 
 <!-- Benefits of the change (separation of concerns, reduced duplication, consistency, etc.) -->
 
-## Files to Change
+## Files
 
-| File | Change |
-|------|--------|
-| `path/to/file.ts` | Description of change |
+| Action | Path |
+|--------|------|
+| Create | `path/to/file.ts` |
+| Modify | `path/to/file.ts` |
