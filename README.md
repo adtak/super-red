@@ -51,8 +51,8 @@ pnpm expo start --web
 
 ```bash
 pnpm expo lint     # ESLint
-pnpm format        # Biome formatter (write)
-pnpm format:check  # Biome formatter (check)
+pnpm format        # Biome format + import sorting (write)
+pnpm format:check  # Biome format + import sorting (check)
 ```
 
 ### Project Structure
