@@ -18,12 +18,20 @@ import {
   GAME_OVER_EFFECT_FRAMES,
   GRAVITY,
   JUMP_VELOCITY,
-  SCROLL_SPEED,
+  SCROLL_SPEED_MAX,
+  SCROLL_SPEED_MIN,
   SHAKE_FRAMES,
   SHAKE_INTENSITY,
 } from "@/constants/game";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
+
+function randomScrollSpeed(): number {
+  "worklet";
+  return (
+    SCROLL_SPEED_MIN + Math.random() * (SCROLL_SPEED_MAX - SCROLL_SPEED_MIN)
+  );
+}
 
 interface GameLoopState {
   characterY: SharedValue<number>;
@@ -40,6 +48,7 @@ export function useGameLoop(): GameLoopState {
   const velocityY = useSharedValue(0);
   const isJumping = useSharedValue(false);
   const isGameOver = useSharedValue(false);
+  const scrollSpeed = useSharedValue(randomScrollSpeed());
   const scrollX = useSharedValue(0);
   const bombPositions = useSharedValue(
     Array.from(
@@ -95,12 +104,12 @@ export function useGameLoop(): GameLoopState {
       return;
     }
 
-    scrollX.value -= SCROLL_SPEED;
+    scrollX.value -= scrollSpeed.value;
 
     // Move bombs
     const positions = bombPositions.value.slice();
     for (let i = 0; i < positions.length; i++) {
-      positions[i] -= SCROLL_SPEED;
+      positions[i] -= scrollSpeed.value;
       if (positions[i] < -BOMB_SIZE) {
         const max = Math.max(...positions);
         const gap =
@@ -132,6 +141,7 @@ export function useGameLoop(): GameLoopState {
       characterY.value = 0;
       velocityY.value = 0;
       isJumping.value = false;
+      scrollSpeed.value = randomScrollSpeed();
     }
   });
 
