@@ -8,8 +8,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "format": "biome format --write .",
-    "format:check": "biome format .",
+    "format": "biome check --write .",
+    "format:check": "biome check .",
     "lint": "expo lint"
   },
   "dependencies": {
