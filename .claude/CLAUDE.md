@@ -82,7 +82,7 @@ Routes live in `app/`. Directory structure maps directly to URL structure.
 ### Linting & Formatting
 
 - **ESLint** (`pnpm expo lint`) — Linting only. Kept for Expo-specific rules and React Compiler integration
-- **Biome** (`pnpm format`) — Formatter only (linter disabled in `biome.json`). Also handles import sorting
+- **Biome** (`pnpm format`) — Formatting and import sorting via `biome check` (linter disabled in `biome.json`)
 - The two tools have fully separated roles with no conflicts
 
 ### Import Aliases
