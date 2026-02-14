@@ -1,7 +1,7 @@
-import { Colors } from "@/constants/colors";
-import { useHighScore } from "@/hooks/use-high-score";
 import { router, useLocalSearchParams } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Colors } from "@/constants/colors";
+import { useHighScore } from "@/hooks/use-high-score";
 
 export default function GameOver() {
   const { time } = useLocalSearchParams<{ time: string }>();
