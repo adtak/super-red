@@ -4,6 +4,7 @@ import { BackgroundObjects } from "@/components/game/background-objects";
 import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
 import { Ground } from "@/components/game/ground";
+import { Items } from "@/components/game/items";
 import { Colors } from "@/constants/colors";
 import { CHARACTER_LEFT, GROUND_HEIGHT } from "@/constants/game";
 import { useGameLoop } from "@/hooks/use-game-loop";
@@ -13,6 +14,10 @@ export default function Game() {
     characterY,
     scrollX,
     bombPositions,
+    itemPositions,
+    itemYOffsets,
+    itemActive,
+    itemImageIndices,
     shakeOffsetX,
     shakeOffsetY,
     flashOpacity,
@@ -35,6 +40,12 @@ export default function Game() {
       <Animated.View style={[styles.shakeContainer, shakeStyle]}>
         <BackgroundObjects scrollX={scrollX} />
         <Bombs positions={bombPositions} />
+        <Items
+          positions={itemPositions}
+          yOffsets={itemYOffsets}
+          active={itemActive}
+          imageIndices={itemImageIndices}
+        />
         <View style={styles.character}>
           <Character y={characterY} />
         </View>
