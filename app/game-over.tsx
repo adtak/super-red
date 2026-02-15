@@ -15,7 +15,7 @@ export default function GameOver() {
         <>
           <Text style={styles.scoreLabel}>SCORE</Text>
           <View style={styles.scoreRow}>
-            <Text style={styles.scoreValue}>{score}</Text>
+            <Text style={styles.scoreValue}>{score} pts</Text>
             {isNewHighScore && <Text style={styles.newBadge}>NEW!</Text>}
           </View>
         </>
@@ -23,7 +23,7 @@ export default function GameOver() {
       {highScore && (
         <>
           <Text style={styles.bestLabel}>BEST</Text>
-          <Text style={styles.bestValue}>{highScore}</Text>
+          <Text style={styles.bestValue}>{highScore} pts</Text>
         </>
       )}
       <Pressable
