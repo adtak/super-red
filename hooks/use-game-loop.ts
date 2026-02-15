@@ -17,6 +17,12 @@ import {
   FLASH_PEAK_OPACITY,
   GAME_OVER_EFFECT_FRAMES,
   GRAVITY,
+  ITEM_COUNT,
+  ITEM_MAX_GAP,
+  ITEM_MIN_GAP,
+  ITEM_SIZE,
+  ITEM_Y_MAX,
+  ITEM_Y_MIN,
   JUMP_VELOCITY,
   SCROLL_SPEED_MAX,
   SCROLL_SPEED_MIN,
@@ -33,10 +39,24 @@ function randomScrollSpeed(): number {
   );
 }
 
+function randomItemYOffset(): number {
+  "worklet";
+  return ITEM_Y_MAX + Math.random() * (ITEM_Y_MIN - ITEM_Y_MAX);
+}
+
+function randomItemImageIndex(): number {
+  "worklet";
+  return Math.floor(Math.random() * 3);
+}
+
 interface GameLoopState {
   characterY: SharedValue<number>;
   scrollX: SharedValue<number>;
   bombPositions: SharedValue<number[]>;
+  itemPositions: SharedValue<number[]>;
+  itemYOffsets: SharedValue<number[]>;
+  itemActive: SharedValue<boolean[]>;
+  itemImageIndices: SharedValue<number[]>;
   shakeOffsetX: SharedValue<number>;
   shakeOffsetY: SharedValue<number>;
   flashOpacity: SharedValue<number>;
@@ -55,6 +75,21 @@ export function useGameLoop(): GameLoopState {
       { length: BOMB_COUNT },
       (_, i) => SCREEN_WIDTH + BOMB_MIN_GAP * (i + 1),
     ),
+  );
+  const itemPositions = useSharedValue(
+    Array.from(
+      { length: ITEM_COUNT },
+      (_, i) => SCREEN_WIDTH + ITEM_MIN_GAP * (i + 1),
+    ),
+  );
+  const itemYOffsets = useSharedValue(
+    Array.from({ length: ITEM_COUNT }, () => randomItemYOffset()),
+  );
+  const itemActive = useSharedValue(
+    Array.from({ length: ITEM_COUNT }, () => true),
+  );
+  const itemImageIndices = useSharedValue(
+    Array.from({ length: ITEM_COUNT }, () => randomItemImageIndex()),
   );
   const startTime = useRef(Date.now());
 
@@ -119,7 +154,46 @@ export function useGameLoop(): GameLoopState {
     }
     bombPositions.value = positions;
 
-    // Collision detection (AABB)
+    // Move items
+    const itemPos = itemPositions.value.slice();
+    const itemY = itemYOffsets.value.slice();
+    const active = itemActive.value.slice();
+    const imageIndices = itemImageIndices.value.slice();
+    for (let i = 0; i < itemPos.length; i++) {
+      itemPos[i] -= scrollSpeed.value;
+      if (itemPos[i] < -ITEM_SIZE) {
+        const max = Math.max(...itemPos);
+        const gap =
+          ITEM_MIN_GAP + Math.random() * (ITEM_MAX_GAP - ITEM_MIN_GAP);
+        itemPos[i] = max + gap;
+        itemY[i] = randomItemYOffset();
+        imageIndices[i] = randomItemImageIndex();
+        active[i] = true;
+      }
+    }
+    itemPositions.value = itemPos;
+    itemYOffsets.value = itemY;
+    itemImageIndices.value = imageIndices;
+
+    // Item collision detection (AABB)
+    for (let i = 0; i < itemPos.length; i++) {
+      if (!active[i]) continue;
+      const itemX = itemPos[i];
+      const horizontalOverlap =
+        CHARACTER_LEFT < itemX + ITEM_SIZE &&
+        CHARACTER_LEFT + CHARACTER_SIZE > itemX;
+      const itemTop = itemY[i];
+      const itemBottom = itemTop + ITEM_SIZE;
+      const charTop = characterY.value;
+      const charBottom = charTop + CHARACTER_SIZE;
+      const verticalOverlap = charTop < itemBottom && charBottom > itemTop;
+      if (horizontalOverlap && verticalOverlap) {
+        active[i] = false;
+      }
+    }
+    itemActive.value = active;
+
+    // Bomb collision detection (AABB)
     for (let i = 0; i < positions.length; i++) {
       const bombX = positions[i];
       const horizontalOverlap =
@@ -156,6 +230,10 @@ export function useGameLoop(): GameLoopState {
     characterY,
     scrollX,
     bombPositions,
+    itemPositions,
+    itemYOffsets,
+    itemActive,
+    itemImageIndices,
     shakeOffsetX,
     shakeOffsetY,
     flashOpacity,
