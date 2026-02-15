@@ -25,8 +25,8 @@ export const ITEM_SIZE = 30;
 export const ITEM_COUNT = 2;
 export const ITEM_MIN_GAP = 400;
 export const ITEM_MAX_GAP = 800;
-export const ITEM_Y_MIN = -80;
-export const ITEM_Y_MAX = -200;
+export const ITEM_Y_MIN = -200;
+export const ITEM_Y_MAX = -400;
 
 export const GAME_OVER_EFFECT_FRAMES = 30;
 export const SHAKE_FRAMES = 20;
