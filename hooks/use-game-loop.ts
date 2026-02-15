@@ -1,5 +1,4 @@
 import { router } from "expo-router";
-import { useRef } from "react";
 import { Dimensions } from "react-native";
 import {
   runOnJS,
@@ -57,6 +56,7 @@ interface GameLoopState {
   itemYOffsets: SharedValue<number[]>;
   itemActive: SharedValue<boolean[]>;
   itemImageIndices: SharedValue<number[]>;
+  itemScore: SharedValue<number>;
   shakeOffsetX: SharedValue<number>;
   shakeOffsetY: SharedValue<number>;
   flashOpacity: SharedValue<number>;
@@ -91,18 +91,17 @@ export function useGameLoop(): GameLoopState {
   const itemImageIndices = useSharedValue(
     Array.from({ length: ITEM_COUNT }, () => randomItemImageIndex()),
   );
-  const startTime = useRef(Date.now());
+  const itemScore = useSharedValue(0);
 
   const gameOverFrame = useSharedValue(0);
   const shakeOffsetX = useSharedValue(0);
   const shakeOffsetY = useSharedValue(0);
   const flashOpacity = useSharedValue(0);
 
-  const navigateToGameOver = () => {
-    const elapsedSeconds = (Date.now() - startTime.current) / 1000;
+  const navigateToGameOver = (score: number) => {
     router.replace({
       pathname: "/game-over",
-      params: { time: elapsedSeconds.toFixed(1) },
+      params: { score: String(score) },
     });
   };
 
@@ -134,7 +133,7 @@ export function useGameLoop(): GameLoopState {
 
       // Navigate after effect completes
       if (frame === GAME_OVER_EFFECT_FRAMES) {
-        runOnJS(navigateToGameOver)();
+        runOnJS(navigateToGameOver)(itemScore.value);
       }
       return;
     }
@@ -189,6 +188,7 @@ export function useGameLoop(): GameLoopState {
       const verticalOverlap = charTop < itemBottom && charBottom > itemTop;
       if (horizontalOverlap && verticalOverlap) {
         active[i] = false;
+        itemScore.value += 1;
       }
     }
     itemActive.value = active;
@@ -234,6 +234,7 @@ export function useGameLoop(): GameLoopState {
     itemYOffsets,
     itemActive,
     itemImageIndices,
+    itemScore,
     shakeOffsetX,
     shakeOffsetY,
     flashOpacity,

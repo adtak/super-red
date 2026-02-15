@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 
-const HIGH_SCORE_KEY = "highScore";
+const HIGH_SCORE_KEY = "highScore_v2";
 
 /**
  * Reads the stored high score and updates it if the current score is higher.
@@ -14,14 +14,14 @@ export function useHighScore(currentScore: string) {
   useEffect(() => {
     async function checkHighScore() {
       const stored = await AsyncStorage.getItem(HIGH_SCORE_KEY);
-      const current = Number.parseFloat(currentScore);
+      const current = Number.parseInt(currentScore, 10);
 
       if (Number.isNaN(current)) {
         setHighScore(stored);
         return;
       }
 
-      const storedValue = stored ? Number.parseFloat(stored) : null;
+      const storedValue = stored ? Number.parseInt(stored, 10) : null;
 
       if (storedValue === null || current > storedValue) {
         await AsyncStorage.setItem(HIGH_SCORE_KEY, currentScore);

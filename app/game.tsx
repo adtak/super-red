@@ -1,5 +1,8 @@
-import { Pressable, StyleSheet, View } from "react-native";
-import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import Animated, {
+  useAnimatedProps,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 import { BackgroundObjects } from "@/components/game/background-objects";
 import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
@@ -7,7 +10,10 @@ import { Ground } from "@/components/game/ground";
 import { Items } from "@/components/game/items";
 import { Colors } from "@/constants/colors";
 import { CHARACTER_LEFT, GROUND_HEIGHT } from "@/constants/game";
+import { Typography } from "@/constants/typography";
 import { useGameLoop } from "@/hooks/use-game-loop";
+
+const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 export default function Game() {
   const {
@@ -18,6 +24,7 @@ export default function Game() {
     itemYOffsets,
     itemActive,
     itemImageIndices,
+    itemScore,
     shakeOffsetX,
     shakeOffsetY,
     flashOpacity,
@@ -33,6 +40,11 @@ export default function Game() {
 
   const flashStyle = useAnimatedStyle(() => ({
     opacity: flashOpacity.value,
+  }));
+
+  const scoreProps = useAnimatedProps(() => ({
+    text: String(itemScore.value),
+    defaultValue: "0",
   }));
 
   return (
@@ -51,6 +63,14 @@ export default function Game() {
         </View>
         <Ground scrollX={scrollX} />
       </Animated.View>
+
+      <AnimatedTextInput
+        style={styles.scoreHud}
+        editable={false}
+        animatedProps={scoreProps}
+        pointerEvents="none"
+      />
+
       <Animated.View
         style={[styles.flashOverlay, flashStyle]}
         pointerEvents="none"
@@ -71,6 +91,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: CHARACTER_LEFT,
     bottom: GROUND_HEIGHT,
+  },
+  scoreHud: {
+    position: "absolute",
+    top: 60,
+    right: 20,
+    ...Typography.score,
+    color: Colors.text,
   },
   flashOverlay: {
     ...StyleSheet.absoluteFillObject,
