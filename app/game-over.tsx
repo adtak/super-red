@@ -5,17 +5,17 @@ import { Typography } from "@/constants/typography";
 import { useHighScore } from "@/hooks/use-high-score";
 
 export default function GameOver() {
-  const { time } = useLocalSearchParams<{ time: string }>();
-  const { highScore, isNewHighScore } = useHighScore(time ?? "0");
+  const { score } = useLocalSearchParams<{ score: string }>();
+  const { highScore, isNewHighScore } = useHighScore(score ?? "0");
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>GAME OVER</Text>
-      {time && (
+      {score && (
         <>
-          <Text style={styles.survivedLabel}>SURVIVED</Text>
+          <Text style={styles.scoreLabel}>SCORE</Text>
           <View style={styles.scoreRow}>
-            <Text style={styles.time}>{time}s</Text>
+            <Text style={styles.scoreValue}>{score} pts</Text>
             {isNewHighScore && <Text style={styles.newBadge}>NEW!</Text>}
           </View>
         </>
@@ -23,7 +23,7 @@ export default function GameOver() {
       {highScore && (
         <>
           <Text style={styles.bestLabel}>BEST</Text>
-          <Text style={styles.bestTime}>{highScore}s</Text>
+          <Text style={styles.bestValue}>{highScore} pts</Text>
         </>
       )}
       <Pressable
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     ...Typography.title,
     color: Colors.title,
   },
-  survivedLabel: {
+  scoreLabel: {
     ...Typography.label,
     marginTop: 40,
     color: Colors.text,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     gap: 12,
   },
-  time: {
+  scoreValue: {
     ...Typography.score,
     color: Colors.text,
   },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
     color: Colors.text,
   },
-  bestTime: {
+  bestValue: {
     ...Typography.score,
     marginTop: 8,
     color: Colors.text,
