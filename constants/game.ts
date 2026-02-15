@@ -21,7 +21,7 @@ export const BOMB_COUNT = 3;
 export const BOMB_MIN_GAP = 300;
 export const BOMB_MAX_GAP = 600;
 
-export const ITEM_SIZE = 30;
+export const ITEM_SIZE = 50;
 export const ITEM_COUNT = 2;
 export const ITEM_MIN_GAP = 400;
 export const ITEM_MAX_GAP = 800;
