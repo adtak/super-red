@@ -1,10 +1,10 @@
 # Super Red
 
-An endless-runner style mobile game built with Expo and React Native. Jump to dodge bombs and survive as long as you can.
+An endless-runner style mobile game built with Expo and React Native. Jump to dodge bombs, collect items, and aim for a high score.
 
 ## Tech Stack
 
-- **Expo SDK 54** / React Native 0.83 / React 19
+- **Expo SDK 54** / React Native 0.81 / React 19
 - **TypeScript** (strict mode)
 - **Expo Router** (file-based routing with typed routes)
 - **React Native Reanimated** (frame-based game loop and animations)
@@ -16,9 +16,11 @@ An endless-runner style mobile game built with Expo and React Native. Jump to do
 - One-button jump gameplay with gravity physics
 - Scrolling ground and parallax background
 - Randomly spaced bomb obstacles
+- Collectible items for scoring
 - AABB collision detection
 - Game over effects (screen shake and flash)
-- Survival time display and retry
+- Item-based scoring with high score tracking
+- Retry from game over screen
 
 ## Getting Started
 
@@ -62,15 +64,20 @@ app/
   _layout.tsx       # Root Stack navigator
   index.tsx         # Title screen ("Tap to Start")
   game.tsx          # Main gameplay (game loop, physics, collision)
-  game-over.tsx     # Game over screen (time display, retry)
+  game-over.tsx     # Game over screen (score, high score, retry)
 components/game/
   character.tsx     # Player character with jump animation
   bombs.tsx         # Scrolling bomb obstacles
+  items.tsx         # Collectible items
   ground.tsx        # Scrolling ground
   background-objects.tsx  # Parallax background decorations
+hooks/
+  use-game-loop.ts  # Frame-based game loop hook
+  use-high-score.ts # AsyncStorage-backed high score persistence
 constants/
   game.ts           # Game physics and dimensions
   colors.ts         # Color palette
+  typography.ts     # Font families and text styles
 ```
 
 ### CI
