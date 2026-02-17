@@ -32,6 +32,9 @@ export default function GameOver() {
       >
         <Text style={styles.retryText}>RETRY</Text>
       </Pressable>
+      <Pressable style={styles.retryButton} onPress={() => router.replace("/")}>
+        <Text style={styles.retryText}>TITLE</Text>
+      </Pressable>
     </View>
   );
 }
