@@ -26,14 +26,11 @@ export default function GameOver() {
           <Text style={styles.bestValue}>{highScore} pts</Text>
         </>
       )}
-      <Pressable
-        style={styles.retryButton}
-        onPress={() => router.replace("/game")}
-      >
-        <Text style={styles.retryText}>RETRY</Text>
+      <Pressable style={styles.button} onPress={() => router.replace("/game")}>
+        <Text style={styles.buttonText}>RETRY</Text>
       </Pressable>
-      <Pressable style={styles.retryButton} onPress={() => router.replace("/")}>
-        <Text style={styles.retryText}>TITLE</Text>
+      <Pressable style={styles.button} onPress={() => router.replace("/")}>
+        <Text style={styles.buttonText}>TITLE</Text>
       </Pressable>
     </View>
   );
@@ -81,10 +78,15 @@ const styles = StyleSheet.create({
     marginTop: 8,
     color: Colors.text,
   },
-  retryButton: {
+  button: {
     marginTop: 32,
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderWidth: 2,
+    borderColor: Colors.text,
+    borderRadius: 8,
   },
-  retryText: {
+  buttonText: {
     ...Typography.body,
     color: Colors.text,
   },
