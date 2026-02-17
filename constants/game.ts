@@ -1,6 +1,6 @@
 export const CHARACTER_SIZE = 50;
 export const CHARACTER_HEIGHT = 73;
-export const GROUND_HEIGHT = 60;
+export const GROUND_HEIGHT = 120;
 export const CHARACTER_LEFT = 50;
 
 export const JUMP_VELOCITY = -30;
