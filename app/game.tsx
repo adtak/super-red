@@ -75,12 +75,14 @@ export default function Game() {
         <Ground scrollX={scrollX} />
       </Animated.View>
 
-      <AnimatedTextInput
-        style={styles.scoreHud}
-        editable={false}
-        animatedProps={scoreProps}
-        pointerEvents="none"
-      />
+      <View style={styles.scoreBadge}>
+        <AnimatedTextInput
+          style={styles.scoreHud}
+          editable={false}
+          animatedProps={scoreProps}
+          pointerEvents="none"
+        />
+      </View>
 
       <Animated.View
         style={[styles.flashOverlay, flashStyle]}
@@ -127,12 +129,21 @@ const styles = StyleSheet.create({
     left: CHARACTER_LEFT,
     bottom: GROUND_HEIGHT,
   },
-  scoreHud: {
+  scoreBadge: {
     position: "absolute",
     top: 60,
-    right: 20,
+    left: 20,
+    borderWidth: 2,
+    borderColor: Colors.text,
+    borderRadius: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+  },
+  scoreHud: {
     ...Typography.score,
     color: Colors.text,
+    textAlign: "center",
   },
   flashOverlay: {
     ...StyleSheet.absoluteFillObject,
