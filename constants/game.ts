@@ -31,4 +31,7 @@ export const ITEM_Y_MAX = -400;
 export const GAME_OVER_EFFECT_FRAMES = 30;
 export const SHAKE_FRAMES = 20;
 export const SHAKE_INTENSITY = 10;
+export const FLASH_HOLD_FRAMES = 3;
 export const FLASH_PEAK_OPACITY = 0.6;
+
+export const FOOD_IMAGE_COUNT = 3;
