@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import { runOnJS, useSharedValue } from "react-native-reanimated";
 import {
+  FLASH_HOLD_FRAMES,
   FLASH_PEAK_OPACITY,
   GAME_OVER_EFFECT_FRAMES,
   SHAKE_FRAMES,
@@ -35,11 +36,11 @@ export function useGameOverEffect() {
     }
 
     // Screen flash
-    if (frame <= 3) {
+    if (frame <= FLASH_HOLD_FRAMES) {
       flashOpacity.value = FLASH_PEAK_OPACITY;
     } else {
       const remaining = GAME_OVER_EFFECT_FRAMES - frame;
-      const fadeRange = GAME_OVER_EFFECT_FRAMES - 3;
+      const fadeRange = GAME_OVER_EFFECT_FRAMES - FLASH_HOLD_FRAMES;
       flashOpacity.value = Math.max(
         0,
         FLASH_PEAK_OPACITY * (remaining / fadeRange),

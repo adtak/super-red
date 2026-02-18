@@ -3,6 +3,7 @@ import { type SharedValue, useSharedValue } from "react-native-reanimated";
 import {
   CHARACTER_LEFT,
   CHARACTER_SIZE,
+  FOOD_IMAGE_COUNT,
   ITEM_COUNT,
   ITEM_MAX_GAP,
   ITEM_MIN_GAP,
@@ -20,7 +21,7 @@ function randomItemYOffset(): number {
 
 function randomItemImageIndex(): number {
   "worklet";
-  return Math.floor(Math.random() * 3);
+  return Math.floor(Math.random() * FOOD_IMAGE_COUNT);
 }
 
 export function useItems() {
