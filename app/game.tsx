@@ -1,4 +1,5 @@
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { router } from "expo-router";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import Animated, {
   useAnimatedProps,
   useAnimatedStyle,
@@ -28,7 +29,9 @@ export default function Game() {
     shakeOffsetX,
     shakeOffsetY,
     flashOpacity,
+    isPaused,
     handleJump,
+    togglePause,
   } = useGameLoop();
 
   const shakeStyle = useAnimatedStyle(() => ({
@@ -45,6 +48,14 @@ export default function Game() {
   const scoreProps = useAnimatedProps(() => ({
     text: String(itemScore.value),
     defaultValue: "0",
+  }));
+
+  const pauseOverlayStyle = useAnimatedStyle(() => ({
+    display: isPaused.value ? "flex" : "none",
+  }));
+
+  const pauseButtonStyle = useAnimatedStyle(() => ({
+    display: isPaused.value ? "none" : "flex",
   }));
 
   return (
@@ -75,6 +86,30 @@ export default function Game() {
         style={[styles.flashOverlay, flashStyle]}
         pointerEvents="none"
       />
+
+      {/* Pause button (top-right corner) */}
+      <Animated.View style={[styles.pauseButtonWrapper, pauseButtonStyle]}>
+        <Pressable style={styles.pauseButton} onPress={togglePause}>
+          <Text style={styles.pauseButtonText}>II</Text>
+        </Pressable>
+      </Animated.View>
+
+      {/* Pause overlay */}
+      <Animated.View
+        style={[styles.pauseOverlay, pauseOverlayStyle]}
+        pointerEvents="auto"
+      >
+        <Text style={styles.pauseTitle}>PAUSED</Text>
+        <Pressable style={styles.pauseMenuButton} onPress={togglePause}>
+          <Text style={styles.pauseMenuButtonText}>RESUME</Text>
+        </Pressable>
+        <Pressable
+          style={styles.pauseMenuButton}
+          onPress={() => router.replace("/")}
+        >
+          <Text style={styles.pauseMenuButtonText}>TITLE</Text>
+        </Pressable>
+      </Animated.View>
     </Pressable>
   );
 }
@@ -102,5 +137,45 @@ const styles = StyleSheet.create({
   flashOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: Colors.title,
+  },
+  pauseButtonWrapper: {
+    position: "absolute",
+    top: 60,
+    left: 20,
+  },
+  pauseButton: {
+    borderWidth: 2,
+    borderColor: Colors.text,
+    borderRadius: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+  },
+  pauseButtonText: {
+    ...Typography.score,
+    color: Colors.text,
+    textAlign: "center",
+  },
+  pauseOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  pauseTitle: {
+    ...Typography.title,
+    color: Colors.title,
+  },
+  pauseMenuButton: {
+    marginTop: 32,
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderWidth: 2,
+    borderColor: Colors.text,
+    borderRadius: 8,
+  },
+  pauseMenuButtonText: {
+    ...Typography.body,
+    color: Colors.text,
   },
 });

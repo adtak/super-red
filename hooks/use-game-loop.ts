@@ -60,7 +60,9 @@ interface GameLoopState {
   shakeOffsetX: SharedValue<number>;
   shakeOffsetY: SharedValue<number>;
   flashOpacity: SharedValue<number>;
+  isPaused: SharedValue<boolean>;
   handleJump: () => void;
+  togglePause: () => void;
 }
 
 export function useGameLoop(): GameLoopState {
@@ -68,6 +70,7 @@ export function useGameLoop(): GameLoopState {
   const velocityY = useSharedValue(0);
   const isJumping = useSharedValue(false);
   const isGameOver = useSharedValue(false);
+  const isPaused = useSharedValue(false);
   const scrollSpeed = useSharedValue(randomScrollSpeed());
   const scrollX = useSharedValue(0);
   const bombPositions = useSharedValue(
@@ -137,6 +140,9 @@ export function useGameLoop(): GameLoopState {
       }
       return;
     }
+
+    // Skip all frame updates while paused
+    if (isPaused.value) return;
 
     scrollX.value -= scrollSpeed.value;
 
@@ -221,9 +227,15 @@ export function useGameLoop(): GameLoopState {
 
   const handleJump = () => {
     if (isGameOver.value) return;
+    if (isPaused.value) return;
     if (isJumping.value) return;
     velocityY.value = JUMP_VELOCITY;
     isJumping.value = true;
+  };
+
+  const togglePause = () => {
+    if (isGameOver.value) return;
+    isPaused.value = !isPaused.value;
   };
 
   return {
@@ -238,6 +250,8 @@ export function useGameLoop(): GameLoopState {
     shakeOffsetX,
     shakeOffsetY,
     flashOpacity,
+    isPaused,
     handleJump,
+    togglePause,
   };
 }
