@@ -1,5 +1,6 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { GameButton } from "@/components/ui/game-button";
 import { Colors } from "@/constants/colors";
 import { Typography } from "@/constants/typography";
 import { useHighScore } from "@/hooks/use-high-score";
@@ -26,12 +27,8 @@ export default function GameOver() {
           <Text style={styles.bestValue}>{highScore} pts</Text>
         </>
       )}
-      <Pressable style={styles.button} onPress={() => router.replace("/game")}>
-        <Text style={styles.buttonText}>RETRY</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={() => router.replace("/")}>
-        <Text style={styles.buttonText}>TITLE</Text>
-      </Pressable>
+      <GameButton label="RETRY" onPress={() => router.replace("/game")} />
+      <GameButton label="TITLE" onPress={() => router.replace("/")} />
     </View>
   );
 }
@@ -76,18 +73,6 @@ const styles = StyleSheet.create({
   bestValue: {
     ...Typography.score,
     marginTop: 8,
-    color: Colors.text,
-  },
-  button: {
-    marginTop: 32,
-    paddingVertical: 14,
-    paddingHorizontal: 40,
-    borderWidth: 2,
-    borderColor: Colors.text,
-    borderRadius: 8,
-  },
-  buttonText: {
-    ...Typography.body,
     color: Colors.text,
   },
 });
