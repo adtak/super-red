@@ -9,6 +9,7 @@ import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
 import { Ground } from "@/components/game/ground";
 import { Items } from "@/components/game/items";
+import { GameButton } from "@/components/ui/game-button";
 import { Colors } from "@/constants/colors";
 import { CHARACTER_LEFT, GROUND_HEIGHT } from "@/constants/game";
 import { Typography } from "@/constants/typography";
@@ -102,15 +103,8 @@ export default function Game() {
         pointerEvents="auto"
       >
         <Text style={styles.pauseTitle}>PAUSED</Text>
-        <Pressable style={styles.pauseMenuButton} onPress={togglePause}>
-          <Text style={styles.pauseMenuButtonText}>RESUME</Text>
-        </Pressable>
-        <Pressable
-          style={styles.pauseMenuButton}
-          onPress={() => router.replace("/")}
-        >
-          <Text style={styles.pauseMenuButtonText}>TITLE</Text>
-        </Pressable>
+        <GameButton label="RESUME" onPress={togglePause} />
+        <GameButton label="TITLE" onPress={() => router.replace("/")} />
       </Animated.View>
     </Pressable>
   );
@@ -176,17 +170,5 @@ const styles = StyleSheet.create({
   pauseTitle: {
     ...Typography.title,
     color: Colors.title,
-  },
-  pauseMenuButton: {
-    marginTop: 32,
-    paddingVertical: 14,
-    paddingHorizontal: 40,
-    borderWidth: 2,
-    borderColor: Colors.text,
-    borderRadius: 8,
-  },
-  pauseMenuButtonText: {
-    ...Typography.body,
-    color: Colors.text,
   },
 });
