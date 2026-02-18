@@ -11,6 +11,33 @@ const FOOD_IMAGES: ImageSourcePropType[] = [
   require("@/assets/images/food3.png"),
 ];
 
+function FoodImage({
+  source,
+  active,
+  imageIndices,
+  index,
+  imgIndex,
+}: {
+  source: ImageSourcePropType;
+  active: SharedValue<boolean[]>;
+  imageIndices: SharedValue<number[]>;
+  index: number;
+  imgIndex: number;
+}) {
+  const animatedStyle = useAnimatedStyle(() => {
+    "worklet";
+    const isVisible =
+      active.value[index] && imageIndices.value[index] === imgIndex;
+    return {
+      opacity: isVisible ? 1 : 0,
+    };
+  });
+
+  return (
+    <Animated.Image source={source} style={[styles.itemImage, animatedStyle]} />
+  );
+}
+
 function Item({
   positions,
   yOffsets,
@@ -24,18 +51,6 @@ function Item({
   imageIndices: SharedValue<number[]>;
   index: number;
 }) {
-  const animatedStyles = FOOD_IMAGES.map((_, imgIndex) =>
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useAnimatedStyle(() => {
-      "worklet";
-      const isVisible =
-        active.value[index] && imageIndices.value[index] === imgIndex;
-      return {
-        opacity: isVisible ? 1 : 0,
-      };
-    }),
-  );
-
   const containerStyle = useAnimatedStyle(() => {
     "worklet";
     return {
@@ -49,10 +64,13 @@ function Item({
   return (
     <Animated.View style={[styles.item, containerStyle]}>
       {FOOD_IMAGES.map((source, imgIndex) => (
-        <Animated.Image
+        <FoodImage
           key={imgIndex}
           source={source}
-          style={[styles.itemImage, animatedStyles[imgIndex]]}
+          active={active}
+          imageIndices={imageIndices}
+          index={index}
+          imgIndex={imgIndex}
         />
       ))}
     </Animated.View>
