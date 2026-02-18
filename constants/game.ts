@@ -1,3 +1,7 @@
+import { Dimensions } from "react-native";
+
+export const SCREEN_WIDTH = Dimensions.get("window").width;
+
 export const CHARACTER_SIZE = 50;
 export const CHARACTER_HEIGHT = 73;
 export const GROUND_HEIGHT = 350;
