@@ -3,9 +3,9 @@ import type { SharedValue } from "react-native-reanimated";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import { CHARACTER_HEIGHT, CHARACTER_SIZE } from "@/constants/game";
 
-type CharacterProps = {
+interface CharacterProps {
   y: SharedValue<number>;
-};
+}
 
 export function Character({ y }: CharacterProps) {
   const animatedStyle = useAnimatedStyle(() => ({
