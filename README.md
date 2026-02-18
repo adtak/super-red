@@ -100,7 +100,7 @@ Run these from the Claude Code CLI prompt:
 | --- | --- |
 | `/plan-issue <number>` | Analyze codebase context and write a concrete implementation plan into the GitHub issue description |
 | `/plan-refactor` | Scan the codebase for refactoring opportunities, present proposals for approval, then file a GitHub issue for each |
-| `/implement-issue <number>` | Read the issue, create a git worktree on a new branch, implement the changes, run lint/format/tsc checks, commit, and open a PR |
+| `/implement-issue <number>` | Delegate to the `implement-issue` agent, which reads the issue, creates a git worktree on a new branch, implements the changes, runs lint/format/tsc checks, commits, and opens a PR |
 | `/agent-team-implement-issues <num> [num ...]` | Implement multiple issues in parallel — spawns one agent per issue, each working in its own worktree |
 
 ### Agents
