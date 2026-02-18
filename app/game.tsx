@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   pauseButtonWrapper: {
     position: "absolute",
     top: 60,
-    left: 20,
+    right: 20,
   },
   pauseButton: {
     borderWidth: 2,
