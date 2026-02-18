@@ -1,12 +1,15 @@
-import { Dimensions, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated, {
   type SharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { Colors } from "@/constants/colors";
-import { GROUND_HEIGHT, GROUND_MARKER_GAP } from "@/constants/game";
+import {
+  GROUND_HEIGHT,
+  GROUND_MARKER_GAP,
+  SCREEN_WIDTH,
+} from "@/constants/game";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const MARKER_COUNT = Math.ceil(SCREEN_WIDTH / GROUND_MARKER_GAP) + 1;
 
 function buildMarkers() {

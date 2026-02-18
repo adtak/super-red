@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated, {
   type SharedValue,
   useAnimatedStyle,
@@ -11,9 +11,9 @@ import {
   BG_OBJECT_SIZE,
   BG_OBJECT_Y_SPACING,
   GROUND_HEIGHT,
+  SCREEN_WIDTH,
 } from "@/constants/game";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const TOTAL_WIDTH = SCREEN_WIDTH + BG_OBJECT_SIZE.width;
 
 const OBJECTS = Array.from({ length: BG_OBJECT_COUNT }, (_, i) => ({
