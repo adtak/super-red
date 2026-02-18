@@ -98,6 +98,9 @@ const styles = StyleSheet.create({
     right: 20,
     ...Typography.score,
     color: Colors.text,
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 4,
   },
   flashOverlay: {
     ...StyleSheet.absoluteFillObject,

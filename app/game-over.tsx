@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
   scoreValue: {
     ...Typography.score,
     color: Colors.text,
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 4,
   },
   newBadge: {
     ...Typography.label,
@@ -77,6 +80,9 @@ const styles = StyleSheet.create({
     ...Typography.score,
     marginTop: 8,
     color: Colors.text,
+    textShadowColor: "rgba(0, 0, 0, 0.5)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 4,
   },
   button: {
     marginTop: 32,
