@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
     paddingVertical: 14,
     paddingHorizontal: 40,
+    minWidth: 200,
     borderWidth: 2,
     borderColor: Colors.text,
     borderRadius: 8,
@@ -34,5 +35,6 @@ const styles = StyleSheet.create({
   buttonText: {
     ...Typography.body,
     color: Colors.text,
+    textAlign: "center",
   },
 });
