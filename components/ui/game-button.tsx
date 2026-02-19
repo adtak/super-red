@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
   buttonText: {
     ...Typography.body,
     color: Colors.text,
+    textAlign: "center",
   },
 });
