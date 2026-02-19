@@ -1,33 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: /
-    schedule:
-      interval: weekly
-      day: monday
-    open-pull-requests-limit: 10
-    groups:
-      expo:
-        patterns:
-          - "expo*"
-          - "@expo/*"
-        update-types:
-          - minor
-          - patch
-      react-native:
-        patterns:
-          - "react-native*"
-        update-types:
-          - minor
-          - patch
-      react:
-        patterns:
-          - "react"
-          - "react-dom"
-        update-types:
-          - minor
-          - patch
-
   - package-ecosystem: github-actions
     directory: /
     schedule:
