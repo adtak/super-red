@@ -5,19 +5,31 @@ import Animated, {
 } from "react-native-reanimated";
 import {
   CLOUD_COUNT,
+  CLOUD_MAX_GAP,
+  CLOUD_MIN_GAP,
   CLOUD_PARALLAX_FACTOR,
   CLOUD_SIZE,
   CLOUD_Y_POSITIONS,
   SCREEN_WIDTH,
 } from "@/constants/game";
 
-const TOTAL_WIDTH = SCREEN_WIDTH + CLOUD_SIZE.width;
-
-const CLOUDS = Array.from({ length: CLOUD_COUNT }, (_, i) => ({
-  id: i,
-  xOffset: (SCREEN_WIDTH / CLOUD_COUNT) * i,
-  bottom: CLOUD_Y_POSITIONS[i],
-}));
+const { CLOUDS, TOTAL_WIDTH } = (() => {
+  const clouds = [];
+  let currentX = 0;
+  for (let i = 0; i < CLOUD_COUNT; i++) {
+    clouds.push({
+      id: i,
+      xOffset: currentX,
+      bottom: CLOUD_Y_POSITIONS[i],
+    });
+    const gap =
+      CLOUD_MIN_GAP + Math.random() * (CLOUD_MAX_GAP - CLOUD_MIN_GAP);
+    currentX += CLOUD_SIZE.width + gap;
+  }
+  const finalGap =
+    CLOUD_MIN_GAP + Math.random() * (CLOUD_MAX_GAP - CLOUD_MIN_GAP);
+  return { CLOUDS: clouds, TOTAL_WIDTH: currentX + finalGap };
+})();
 
 interface CloudsProps {
   scrollX: SharedValue<number>;
