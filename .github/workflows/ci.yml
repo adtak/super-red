@@ -27,6 +27,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Expo Install Check
+        run: pnpm expo install --check
+
       - name: Lint
         run: npx expo lint
 
