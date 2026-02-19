@@ -28,7 +28,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Expo Doctor
-        run: pnpm expo doctor --non-interactive
+        run: pnpm expo-doctor
 
       - name: Lint
         run: npx expo lint
