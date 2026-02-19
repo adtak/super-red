@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     ...Typography.score,
     color: Colors.text,
     textAlign: "center",
+    minWidth: 60,
   },
   flashOverlay: {
     ...StyleSheet.absoluteFillObject,
