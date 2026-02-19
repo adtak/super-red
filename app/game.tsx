@@ -83,6 +83,7 @@ export default function Game() {
           animatedProps={scoreProps}
           pointerEvents="none"
         />
+        <Text style={styles.ptsLabel}>pts</Text>
       </View>
 
       <Animated.View
@@ -127,6 +128,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 60,
     left: 20,
+    flexDirection: "row",
+    alignItems: "baseline",
     borderWidth: 2,
     borderColor: Colors.text,
     borderRadius: 8,
@@ -138,6 +141,13 @@ const styles = StyleSheet.create({
     ...Typography.score,
     color: Colors.text,
     textAlign: "center",
+    minWidth: 120,
+  },
+  ptsLabel: {
+    ...Typography.score,
+    fontSize: 20,
+    color: Colors.text,
+    marginLeft: 4,
   },
   flashOverlay: {
     ...StyleSheet.absoluteFillObject,
