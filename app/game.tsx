@@ -73,7 +73,7 @@ export default function Game() {
         <View style={styles.character}>
           <Character y={characterY} />
         </View>
-        <Ground scrollX={scrollX} />
+        <Ground />
       </Animated.View>
 
       <View style={styles.scoreBadge}>
