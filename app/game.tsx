@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   ptsLabel: {
     ...Typography.score,
-    fontSize: 14,
+    fontSize: 20,
     color: Colors.text,
     marginLeft: 4,
   },
