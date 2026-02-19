@@ -38,3 +38,10 @@ export const FLASH_HOLD_FRAMES = 3;
 export const FLASH_PEAK_OPACITY = 0.6;
 
 export const FOOD_IMAGE_COUNT = 3;
+
+export const CLOUD_COUNT = 3;
+export const CLOUD_SIZE = { width: 120, height: 60 };
+export const CLOUD_MIN_GAP = 100;
+export const CLOUD_MAX_GAP = 400;
+export const CLOUD_PARALLAX_FACTOR = 0.3;
+export const CLOUD_Y_POSITIONS = [600, 700, 800];

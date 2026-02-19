@@ -7,6 +7,7 @@ import Animated, {
 import { BackgroundObjects } from "@/components/game/background-objects";
 import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
+import { Clouds } from "@/components/game/clouds";
 import { Ground } from "@/components/game/ground";
 import { Items } from "@/components/game/items";
 import { GameButton } from "@/components/ui/game-button";
@@ -62,6 +63,7 @@ export default function Game() {
   return (
     <Pressable style={styles.container} onPress={handleJump}>
       <Animated.View style={[styles.shakeContainer, shakeStyle]}>
+        <Clouds scrollX={scrollX} />
         <BackgroundObjects scrollX={scrollX} />
         <Bombs positions={bombPositions} />
         <Items
