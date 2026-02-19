@@ -22,8 +22,7 @@ const { CLOUDS, TOTAL_WIDTH } = (() => {
       xOffset: currentX,
       bottom: CLOUD_Y_POSITIONS[i],
     });
-    const gap =
-      CLOUD_MIN_GAP + Math.random() * (CLOUD_MAX_GAP - CLOUD_MIN_GAP);
+    const gap = CLOUD_MIN_GAP + Math.random() * (CLOUD_MAX_GAP - CLOUD_MIN_GAP);
     currentX += CLOUD_SIZE.width + gap;
   }
   const finalGap =
