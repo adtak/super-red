@@ -12,7 +12,6 @@ export const GRAVITY = 0.8;
 
 export const SCROLL_SPEED_MIN = 3;
 export const SCROLL_SPEED_MAX = 5;
-export const GROUND_MARKER_GAP = 40;
 export const BG_OBJECT_COUNT = 4;
 export const BG_OBJECT_SIZE = { width: 20, height: 20 };
 export const BG_OBJECT_BASE_OFFSET = 40;
