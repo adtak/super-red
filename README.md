@@ -4,7 +4,7 @@ An endless-runner style mobile game built with Expo and React Native. Jump to do
 
 ## Tech Stack
 
-- **Expo SDK 54** / React Native 0.81 / React 19
+- **Expo SDK 54** / React Native 0.81.5 / React 19
 - **TypeScript** (strict mode)
 - **Expo Router** (file-based routing with typed routes)
 - **React Native Reanimated** (frame-based game loop and animations)
@@ -14,7 +14,7 @@ An endless-runner style mobile game built with Expo and React Native. Jump to do
 
 - Tap-to-start title screen
 - One-button jump gameplay with gravity physics
-- Scrolling ground and parallax background
+- Scrolling ground, clouds, and parallax background
 - Randomly spaced bomb obstacles
 - Collectible items for scoring
 - AABB collision detection
@@ -70,23 +70,32 @@ components/game/
   bombs.tsx         # Scrolling bomb obstacles
   items.tsx         # Collectible items
   ground.tsx        # Scrolling ground
+  clouds.tsx        # Scrolling cloud decorations
   background-objects.tsx  # Parallax background decorations
 hooks/
-  use-game-loop.ts  # Frame-based game loop hook
-  use-high-score.ts # AsyncStorage-backed high score persistence
+  use-game-loop.ts          # Frame-based game loop hook
+  use-character-physics.ts  # Jump physics and gravity
+  use-bombs.ts              # Bomb spawning and scrolling
+  use-items.ts              # Item spawning and scrolling
+  use-collision-detection.ts # AABB collision detection
+  use-game-over-effect.ts   # Screen shake and flash effects
+  use-high-score.ts         # AsyncStorage-backed high score persistence
 constants/
   game.ts           # Game physics and dimensions
   colors.ts         # Color palette
   typography.ts     # Font families and text styles
+utils/
+  random.ts         # Random number and position utilities
 ```
 
 ### CI
 
 Runs on every PR via GitHub Actions:
 
-1. ESLint
-2. Biome format check
-3. TypeScript type check
+1. Expo Doctor (`expo-doctor`)
+2. ESLint
+3. Biome format check
+4. TypeScript type check
 
 ## Claude Code
 
