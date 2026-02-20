@@ -1,10 +1,6 @@
 import { useSharedValue } from "react-native-reanimated";
 import { GRAVITY, JUMP_VELOCITY } from "@/constants/game";
-
-function randomScrollSpeed(min: number, max: number): number {
-  "worklet";
-  return min + Math.random() * (max - min);
-}
+import { randomInRange } from "@/utils/random";
 
 interface CharacterPhysicsParams {
   scrollSpeedMin: number;
@@ -19,7 +15,7 @@ export function useCharacterPhysics({
   const velocityY = useSharedValue(0);
   const isJumping = useSharedValue(false);
   const scrollSpeed = useSharedValue(
-    randomScrollSpeed(scrollSpeedMin, scrollSpeedMax),
+    randomInRange(scrollSpeedMin, scrollSpeedMax),
   );
 
   const updatePhysics = () => {
@@ -33,7 +29,7 @@ export function useCharacterPhysics({
       characterY.value = 0;
       velocityY.value = 0;
       isJumping.value = false;
-      scrollSpeed.value = randomScrollSpeed(scrollSpeedMin, scrollSpeedMax);
+      scrollSpeed.value = randomInRange(scrollSpeedMin, scrollSpeedMax);
     }
   };
 

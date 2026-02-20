@@ -9,6 +9,7 @@ import {
   CHARACTER_SIZE,
 } from "@/constants/game";
 import { checkHorizontalOverlap } from "@/hooks/use-collision-detection";
+import { randomInRange } from "@/utils/random";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -30,8 +31,7 @@ export function useBombs() {
       positions[i] -= scrollSpeed.value;
       if (positions[i] < -BOMB_SIZE) {
         const max = Math.max(...positions);
-        const gap =
-          BOMB_MIN_GAP + Math.random() * (BOMB_MAX_GAP - BOMB_MIN_GAP);
+        const gap = randomInRange(BOMB_MIN_GAP, BOMB_MAX_GAP);
         positions[i] = max + gap;
       }
     }
