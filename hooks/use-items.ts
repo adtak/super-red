@@ -11,6 +11,7 @@ import {
   ITEM_Y_MAX,
   ITEM_Y_MIN,
 } from "@/constants/game";
+import { checkAABBCollision } from "@/hooks/use-collision-detection";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -71,16 +72,17 @@ export function useItems() {
     // Item collision detection (AABB)
     for (let i = 0; i < itemPos.length; i++) {
       if (!active[i]) continue;
-      const itemX = itemPos[i];
-      const horizontalOverlap =
-        CHARACTER_LEFT < itemX + ITEM_SIZE &&
-        CHARACTER_LEFT + CHARACTER_SIZE > itemX;
-      const itemTop = itemY[i];
-      const itemBottom = itemTop + ITEM_SIZE;
-      const charTop = characterY.value;
-      const charBottom = charTop + CHARACTER_SIZE;
-      const verticalOverlap = charTop < itemBottom && charBottom > itemTop;
-      if (horizontalOverlap && verticalOverlap) {
+      const hit = checkAABBCollision(
+        CHARACTER_LEFT,
+        CHARACTER_SIZE,
+        characterY.value,
+        characterY.value + CHARACTER_SIZE,
+        itemPos[i],
+        ITEM_SIZE,
+        itemY[i],
+        itemY[i] + ITEM_SIZE,
+      );
+      if (hit) {
         active[i] = false;
         itemScore.value += 1;
       }
