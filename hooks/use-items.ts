@@ -12,18 +12,9 @@ import {
   ITEM_Y_MIN,
 } from "@/constants/game";
 import { checkAABBCollision } from "@/hooks/use-collision-detection";
+import { randomInRange, randomInt } from "@/utils/random";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-
-function randomItemYOffset(): number {
-  "worklet";
-  return ITEM_Y_MAX + Math.random() * (ITEM_Y_MIN - ITEM_Y_MAX);
-}
-
-function randomItemImageIndex(): number {
-  "worklet";
-  return Math.floor(Math.random() * FOOD_IMAGE_COUNT);
-}
 
 export function useItems() {
   const itemPositions = useSharedValue(
@@ -33,13 +24,15 @@ export function useItems() {
     ),
   );
   const itemYOffsets = useSharedValue(
-    Array.from({ length: ITEM_COUNT }, () => randomItemYOffset()),
+    Array.from({ length: ITEM_COUNT }, () =>
+      randomInRange(ITEM_Y_MAX, ITEM_Y_MIN),
+    ),
   );
   const itemActive = useSharedValue(
     Array.from({ length: ITEM_COUNT }, () => true),
   );
   const itemImageIndices = useSharedValue(
-    Array.from({ length: ITEM_COUNT }, () => randomItemImageIndex()),
+    Array.from({ length: ITEM_COUNT }, () => randomInt(FOOD_IMAGE_COUNT)),
   );
   const itemScore = useSharedValue(0);
 
@@ -57,11 +50,10 @@ export function useItems() {
       itemPos[i] -= scrollSpeed.value;
       if (itemPos[i] < -ITEM_SIZE) {
         const max = Math.max(...itemPos);
-        const gap =
-          ITEM_MIN_GAP + Math.random() * (ITEM_MAX_GAP - ITEM_MIN_GAP);
+        const gap = randomInRange(ITEM_MIN_GAP, ITEM_MAX_GAP);
         itemPos[i] = max + gap;
-        itemY[i] = randomItemYOffset();
-        imageIndices[i] = randomItemImageIndex();
+        itemY[i] = randomInRange(ITEM_Y_MAX, ITEM_Y_MIN);
+        imageIndices[i] = randomInt(FOOD_IMAGE_COUNT);
         active[i] = true;
       }
     }

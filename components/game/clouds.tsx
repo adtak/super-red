@@ -12,6 +12,7 @@ import {
   CLOUD_Y_POSITIONS,
   SCREEN_WIDTH,
 } from "@/constants/game";
+import { randomInRange } from "@/utils/random";
 
 const { CLOUDS, TOTAL_WIDTH } = (() => {
   const clouds = [];
@@ -22,11 +23,10 @@ const { CLOUDS, TOTAL_WIDTH } = (() => {
       xOffset: currentX,
       bottom: CLOUD_Y_POSITIONS[i],
     });
-    const gap = CLOUD_MIN_GAP + Math.random() * (CLOUD_MAX_GAP - CLOUD_MIN_GAP);
+    const gap = randomInRange(CLOUD_MIN_GAP, CLOUD_MAX_GAP);
     currentX += CLOUD_SIZE.width + gap;
   }
-  const finalGap =
-    CLOUD_MIN_GAP + Math.random() * (CLOUD_MAX_GAP - CLOUD_MIN_GAP);
+  const finalGap = randomInRange(CLOUD_MIN_GAP, CLOUD_MAX_GAP);
   return { CLOUDS: clouds, TOTAL_WIDTH: currentX + finalGap };
 })();
 

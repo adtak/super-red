@@ -7,6 +7,7 @@ import {
   SHAKE_FRAMES,
   SHAKE_INTENSITY,
 } from "@/constants/game";
+import { randomInRange } from "@/utils/random";
 
 export function useGameOverEffect() {
   const gameOverFrame = useSharedValue(0);
@@ -28,8 +29,8 @@ export function useGameOverEffect() {
 
     // Screen shake
     if (frame <= SHAKE_FRAMES) {
-      shakeOffsetX.value = (Math.random() * 2 - 1) * SHAKE_INTENSITY;
-      shakeOffsetY.value = (Math.random() * 2 - 1) * SHAKE_INTENSITY;
+      shakeOffsetX.value = randomInRange(-SHAKE_INTENSITY, SHAKE_INTENSITY);
+      shakeOffsetY.value = randomInRange(-SHAKE_INTENSITY, SHAKE_INTENSITY);
     } else {
       shakeOffsetX.value = 0;
       shakeOffsetY.value = 0;
