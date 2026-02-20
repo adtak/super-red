@@ -8,6 +8,7 @@ import {
   CHARACTER_LEFT,
   CHARACTER_SIZE,
 } from "@/constants/game";
+import { checkHorizontalOverlap } from "@/hooks/use-collision-detection";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -38,10 +39,12 @@ export function useBombs() {
 
     // Bomb collision detection (AABB)
     for (let i = 0; i < positions.length; i++) {
-      const bombX = positions[i];
-      const horizontalOverlap =
-        CHARACTER_LEFT < bombX + BOMB_SIZE &&
-        CHARACTER_LEFT + CHARACTER_SIZE > bombX;
+      const horizontalOverlap = checkHorizontalOverlap(
+        CHARACTER_LEFT,
+        CHARACTER_SIZE,
+        positions[i],
+        BOMB_SIZE,
+      );
       const verticalOverlap = characterY.value > -BOMB_SIZE;
       if (horizontalOverlap && verticalOverlap) {
         return true;
