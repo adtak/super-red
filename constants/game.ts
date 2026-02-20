@@ -45,3 +45,10 @@ export const CLOUD_MIN_GAP = 100;
 export const CLOUD_MAX_GAP = 400;
 export const CLOUD_PARALLAX_FACTOR = 0.3;
 export const CLOUD_Y_POSITIONS = [600, 700, 800];
+
+export const HUD_TOP_OFFSET = 60;
+export const HUD_SIDE_PADDING = 20;
+export const HUD_BORDER_WIDTH = 2;
+export const HUD_BORDER_RADIUS = 8;
+export const HUD_BACKGROUND_OPACITY = 0.2;
+export const PAUSE_OVERLAY_BACKGROUND_OPACITY = 0.6;

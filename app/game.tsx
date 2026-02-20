@@ -12,7 +12,16 @@ import { Ground } from "@/components/game/ground";
 import { Items } from "@/components/game/items";
 import { GameButton } from "@/components/ui/game-button";
 import { Colors } from "@/constants/colors";
-import { CHARACTER_LEFT, GROUND_HEIGHT } from "@/constants/game";
+import {
+  CHARACTER_LEFT,
+  GROUND_HEIGHT,
+  HUD_BACKGROUND_OPACITY,
+  HUD_BORDER_RADIUS,
+  HUD_BORDER_WIDTH,
+  HUD_SIDE_PADDING,
+  HUD_TOP_OFFSET,
+  PAUSE_OVERLAY_BACKGROUND_OPACITY,
+} from "@/constants/game";
 import { Typography } from "@/constants/typography";
 import { useGameLoop } from "@/hooks/use-game-loop";
 
@@ -128,16 +137,16 @@ const styles = StyleSheet.create({
   },
   scoreBadge: {
     position: "absolute",
-    top: 60,
-    left: 20,
+    top: HUD_TOP_OFFSET,
+    left: HUD_SIDE_PADDING,
     flexDirection: "row",
     alignItems: "baseline",
-    borderWidth: 2,
+    borderWidth: HUD_BORDER_WIDTH,
     borderColor: Colors.text,
-    borderRadius: 8,
+    borderRadius: HUD_BORDER_RADIUS,
     paddingVertical: 6,
     paddingHorizontal: 14,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: `rgba(0, 0, 0, ${HUD_BACKGROUND_OPACITY})`,
   },
   scoreHud: {
     ...Typography.score,
@@ -157,16 +166,16 @@ const styles = StyleSheet.create({
   },
   pauseButtonWrapper: {
     position: "absolute",
-    top: 60,
-    right: 20,
+    top: HUD_TOP_OFFSET,
+    right: HUD_SIDE_PADDING,
   },
   pauseButton: {
-    borderWidth: 2,
+    borderWidth: HUD_BORDER_WIDTH,
     borderColor: Colors.text,
-    borderRadius: 8,
+    borderRadius: HUD_BORDER_RADIUS,
     paddingVertical: 6,
     paddingHorizontal: 14,
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: `rgba(0, 0, 0, ${HUD_BACKGROUND_OPACITY})`,
   },
   pauseButtonText: {
     ...Typography.score,
@@ -175,7 +184,7 @@ const styles = StyleSheet.create({
   },
   pauseOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    backgroundColor: `rgba(0, 0, 0, ${PAUSE_OVERLAY_BACKGROUND_OPACITY})`,
     justifyContent: "center",
     alignItems: "center",
   },
