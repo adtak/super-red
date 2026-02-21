@@ -27,6 +27,7 @@ Call `TeamCreate` with `team_name: "implement-issues"`.
 
 In a **single message**, spawn one teammate per valid issue using the `Task` tool:
 
+- `subagent_type`: `"general-purpose"`
 - `team_name`: `"implement-issues"`
 - `name`: `"issue-<number>"`
 - `prompt`: `"Read the file at .claude/agents/implement-issue.md and follow its instructions to implement GitHub Issue #<number>. You are a teammate in an agent team — do NOT spawn sub-agents or use the Task tool. Implement everything directly yourself."`
