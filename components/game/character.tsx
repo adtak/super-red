@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import type { SharedValue } from "react-native-reanimated";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import { ASSETS } from "@/constants/assets";
 import { CHARACTER_HEIGHT, CHARACTER_SIZE } from "@/constants/game";
 
 interface CharacterProps {
@@ -14,7 +15,7 @@ export function Character({ y }: CharacterProps) {
 
   return (
     <Animated.Image
-      source={require("@/assets/images/character.png")}
+      source={ASSETS.character}
       style={[styles.character, animatedStyle]}
     />
   );
