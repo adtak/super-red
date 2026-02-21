@@ -3,6 +3,7 @@ import Animated, {
   type SharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated";
+import { ASSETS } from "@/constants/assets";
 import {
   CLOUD_COUNT,
   CLOUD_MAX_GAP,
@@ -56,7 +57,7 @@ function Cloud({
 
   return (
     <Animated.Image
-      source={require("@/assets/images/cloud.png")}
+      source={ASSETS.cloud}
       style={[styles.cloud, { bottom }, animatedStyle]}
     />
   );

@@ -3,12 +3,13 @@ import Animated, {
   type SharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated";
+import { ASSETS } from "@/constants/assets";
 import { GROUND_HEIGHT, ITEM_COUNT, ITEM_SIZE } from "@/constants/game";
 
 const FOOD_IMAGES: ImageSourcePropType[] = [
-  require("@/assets/images/food1.png"),
-  require("@/assets/images/food2.png"),
-  require("@/assets/images/food3.png"),
+  ASSETS.food1,
+  ASSETS.food2,
+  ASSETS.food3,
 ];
 
 function FoodImage({
