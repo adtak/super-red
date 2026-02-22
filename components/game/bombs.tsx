@@ -3,6 +3,7 @@ import Animated, {
   type SharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated";
+import { ASSETS } from "@/constants/assets";
 import {
   BOMB_COUNT,
   BOMB_HEIGHT,
@@ -23,10 +24,7 @@ function Bomb({
   });
 
   return (
-    <Animated.Image
-      source={require("@/assets/images/bomb.png")}
-      style={[styles.bomb, animatedStyle]}
-    />
+    <Animated.Image source={ASSETS.bomb} style={[styles.bomb, animatedStyle]} />
   );
 }
 
