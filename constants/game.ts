@@ -46,6 +46,13 @@ export const CLOUD_MAX_GAP = 400;
 export const CLOUD_PARALLAX_FACTOR = 0.3;
 export const CLOUD_Y_POSITIONS = [600, 700, 800];
 
+export const BIRD_COUNT = 2;
+export const BIRD_SIZE = { width: 60, height: 30 };
+export const BIRD_MIN_GAP = 200;
+export const BIRD_MAX_GAP = 600;
+export const BIRD_PARALLAX_FACTOR = 0.5;
+export const BIRD_Y_POSITIONS = [500, 650];
+
 export const HUD_TOP_OFFSET = 60;
 export const HUD_SIDE_PADDING = 20;
 export const HUD_BORDER_WIDTH = 2;
