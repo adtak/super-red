@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import { BackgroundObjects } from "@/components/game/background-objects";
+import { Birds } from "@/components/game/birds";
 import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
 import { Clouds } from "@/components/game/clouds";
@@ -45,6 +46,7 @@ export default function Game() {
     <Pressable style={styles.container} onPress={handleJump}>
       <Animated.View style={[styles.shakeContainer, shakeStyle]}>
         <Clouds scrollX={scrollX} />
+        <Birds scrollX={scrollX} />
         <BackgroundObjects scrollX={scrollX} />
         <Bombs positions={bombPositions} />
         <Items
