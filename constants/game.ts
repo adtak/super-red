@@ -4,7 +4,7 @@ export const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export const CHARACTER_SIZE = 50;
 export const CHARACTER_HEIGHT = 73;
-export const GROUND_HEIGHT = 350;
+export const GROUND_HEIGHT = 250;
 export const CHARACTER_LEFT = 50;
 
 export const JUMP_VELOCITY = -30;
