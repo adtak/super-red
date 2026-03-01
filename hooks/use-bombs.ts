@@ -5,10 +5,12 @@ import {
   BOMB_MAX_GAP,
   BOMB_MIN_GAP,
   BOMB_SIZE,
+  BOMB_Y_BOTTOM,
+  BOMB_Y_TOP,
   CHARACTER_LEFT,
   CHARACTER_SIZE,
 } from "@/constants/game";
-import { checkHorizontalOverlap } from "@/utils/collision";
+import { checkAABBCollision } from "@/utils/collision";
 import { randomInRange } from "@/utils/random";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -39,14 +41,17 @@ export function useBombs() {
 
     // Bomb collision detection (AABB)
     for (let i = 0; i < positions.length; i++) {
-      const horizontalOverlap = checkHorizontalOverlap(
+      const hit = checkAABBCollision(
         CHARACTER_LEFT,
         CHARACTER_SIZE,
+        characterY.value,
+        characterY.value + CHARACTER_SIZE,
         positions[i],
         BOMB_SIZE,
+        BOMB_Y_TOP,
+        BOMB_Y_BOTTOM,
       );
-      const verticalOverlap = characterY.value > -BOMB_SIZE;
-      if (horizontalOverlap && verticalOverlap) {
+      if (hit) {
         return true;
       }
     }
