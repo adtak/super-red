@@ -77,7 +77,6 @@ hooks/
   use-character-physics.ts  # Jump physics and gravity
   use-bombs.ts              # Bomb spawning and scrolling
   use-items.ts              # Item spawning and scrolling
-  use-collision-detection.ts # AABB collision detection
   use-game-over-effect.ts   # Screen shake and flash effects
   use-high-score.ts         # AsyncStorage-backed high score persistence
 constants/
@@ -86,6 +85,7 @@ constants/
   typography.ts     # Font families and text styles
 utils/
   random.ts         # Random number and position utilities
+  collision.ts      # AABB collision detection
 ```
 
 ### CI

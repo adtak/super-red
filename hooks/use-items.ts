@@ -11,7 +11,7 @@ import {
   ITEM_Y_MAX,
   ITEM_Y_MIN,
 } from "@/constants/game";
-import { checkAABBCollision } from "@/hooks/use-collision-detection";
+import { checkAABBCollision } from "@/utils/collision";
 import { randomInRange, randomInt } from "@/utils/random";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
