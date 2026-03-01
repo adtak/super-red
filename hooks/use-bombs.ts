@@ -8,7 +8,7 @@ import {
   CHARACTER_LEFT,
   CHARACTER_SIZE,
 } from "@/constants/game";
-import { checkHorizontalOverlap } from "@/hooks/use-collision-detection";
+import { checkHorizontalOverlap } from "@/utils/collision";
 import { randomInRange } from "@/utils/random";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
