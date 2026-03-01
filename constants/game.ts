@@ -20,8 +20,7 @@ export const BG_OBJECT_BORDER_RADIUS = 4;
 
 export const BOMB_SIZE = 40;
 export const BOMB_HEIGHT = 60;
-export const BOMB_Y_TOP = -BOMB_HEIGHT;
-export const BOMB_Y_BOTTOM = 0;
+export const BOMB_Y_TOP = 0;
 export const BOMB_COUNT = 3;
 export const BOMB_MIN_GAP = 300;
 export const BOMB_MAX_GAP = 600;

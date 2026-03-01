@@ -2,10 +2,10 @@ import { Dimensions } from "react-native";
 import { type SharedValue, useSharedValue } from "react-native-reanimated";
 import {
   BOMB_COUNT,
+  BOMB_HEIGHT,
   BOMB_MAX_GAP,
   BOMB_MIN_GAP,
   BOMB_SIZE,
-  BOMB_Y_BOTTOM,
   BOMB_Y_TOP,
   CHARACTER_LEFT,
   CHARACTER_SIZE,
@@ -49,7 +49,7 @@ export function useBombs() {
         positions[i],
         BOMB_SIZE,
         BOMB_Y_TOP,
-        BOMB_Y_BOTTOM,
+        BOMB_Y_TOP + BOMB_HEIGHT,
       );
       if (hit) {
         return true;
