@@ -53,6 +53,12 @@ export const BIRD_MAX_GAP = 600;
 export const BIRD_PARALLAX_FACTOR = 0.5;
 export const BIRD_Y_POSITIONS = [500, 650];
 
+export const HOUSE_COUNT = 3;
+export const HOUSE_SIZE = { width: 80, height: 100 };
+export const HOUSE_MIN_GAP = 200;
+export const HOUSE_MAX_GAP = 500;
+export const HOUSE_PARALLAX_FACTOR = 0.7;
+
 export const HUD_TOP_OFFSET = 60;
 export const HUD_SIDE_PADDING = 20;
 export const HUD_BORDER_WIDTH = 2;
