@@ -6,6 +6,7 @@ import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
 import { Clouds } from "@/components/game/clouds";
 import { Ground } from "@/components/game/ground";
+import { Houses } from "@/components/game/houses";
 import { Items } from "@/components/game/items";
 import { PauseOverlay } from "@/components/game/pause-overlay";
 import { ScoreBadge } from "@/components/game/score-badge";
@@ -48,6 +49,7 @@ export default function Game() {
         <Clouds scrollX={scrollX} />
         <Birds scrollX={scrollX} />
         <BackgroundObjects scrollX={scrollX} />
+        <Houses scrollX={scrollX} />
         <Bombs positions={bombPositions} />
         <Items
           positions={itemPositions}
