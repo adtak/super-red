@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { type ImageSourcePropType, StyleSheet, View } from "react-native";
+import {
+  Image,
+  type ImageSourcePropType,
+  StyleSheet,
+  View,
+} from "react-native";
 import Animated, {
   runOnJS,
   type SharedValue,
@@ -28,8 +33,10 @@ function Item({
   imageIndices: SharedValue<number[]>;
   index: number;
 }) {
-  const [visible, setVisible] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
+  const [imageState, setImageState] = useState({
+    visible: false,
+    imageIndex: 0,
+  });
 
   useAnimatedReaction(
     () => ({
@@ -41,8 +48,10 @@ function Item({
         current.isActive !== previous?.isActive ||
         current.imgIndex !== previous?.imgIndex
       ) {
-        runOnJS(setVisible)(current.isActive ?? false);
-        runOnJS(setImageIndex)(current.imgIndex ?? 0);
+        runOnJS(setImageState)({
+          visible: current.isActive ?? false,
+          imageIndex: current.imgIndex ?? 0,
+        });
       }
     },
   );
@@ -59,9 +68,9 @@ function Item({
 
   return (
     <Animated.View style={[styles.item, containerStyle]}>
-      {visible && (
-        <Animated.Image
-          source={FOOD_IMAGES[imageIndex]}
+      {imageState.visible && (
+        <Image
+          source={FOOD_IMAGES[imageState.imageIndex % FOOD_IMAGES.length]}
           style={styles.itemImage}
         />
       )}
