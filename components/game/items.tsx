@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { type ImageSourcePropType, StyleSheet, View } from "react-native";
 import Animated, {
+  runOnJS,
   type SharedValue,
+  useAnimatedReaction,
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { ASSETS } from "@/constants/assets";
@@ -11,33 +14,6 @@ const FOOD_IMAGES: ImageSourcePropType[] = [
   ASSETS.food2,
   ASSETS.food3,
 ];
-
-function FoodImage({
-  source,
-  active,
-  imageIndices,
-  index,
-  imgIndex,
-}: {
-  source: ImageSourcePropType;
-  active: SharedValue<boolean[]>;
-  imageIndices: SharedValue<number[]>;
-  index: number;
-  imgIndex: number;
-}) {
-  const animatedStyle = useAnimatedStyle(() => {
-    "worklet";
-    const isVisible =
-      active.value[index] && imageIndices.value[index] === imgIndex;
-    return {
-      opacity: isVisible ? 1 : 0,
-    };
-  });
-
-  return (
-    <Animated.Image source={source} style={[styles.itemImage, animatedStyle]} />
-  );
-}
 
 function Item({
   positions,
@@ -52,6 +28,25 @@ function Item({
   imageIndices: SharedValue<number[]>;
   index: number;
 }) {
+  const [visible, setVisible] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
+
+  useAnimatedReaction(
+    () => ({
+      isActive: active.value[index],
+      imgIndex: imageIndices.value[index],
+    }),
+    (current, previous) => {
+      if (
+        current.isActive !== previous?.isActive ||
+        current.imgIndex !== previous?.imgIndex
+      ) {
+        runOnJS(setVisible)(current.isActive ?? false);
+        runOnJS(setImageIndex)(current.imgIndex ?? 0);
+      }
+    },
+  );
+
   const containerStyle = useAnimatedStyle(() => {
     "worklet";
     return {
@@ -64,16 +59,12 @@ function Item({
 
   return (
     <Animated.View style={[styles.item, containerStyle]}>
-      {FOOD_IMAGES.map((source, imgIndex) => (
-        <FoodImage
-          key={imgIndex}
-          source={source}
-          active={active}
-          imageIndices={imageIndices}
-          index={index}
-          imgIndex={imgIndex}
+      {visible && (
+        <Animated.Image
+          source={FOOD_IMAGES[imageIndex]}
+          style={styles.itemImage}
         />
-      ))}
+      )}
     </Animated.View>
   );
 }
