@@ -39,18 +39,18 @@ function Item({
   });
 
   useAnimatedReaction(
-    () => ({
-      isActive: active.value[index],
-      imgIndex: imageIndices.value[index],
-    }),
+    // Return a primitive so Reanimated can skip the reaction via native ===
+    // comparison when the value hasn't changed. itemActive is reassigned every
+    // frame in updateItems, so returning an object would always produce a new
+    // reference and cause the reaction to run unnecessarily each frame.
+    // Encoding both visible state and imageIndex as a single number (-1 = hidden,
+    // 0+ = imageIndex) avoids that while keeping the logic in one place.
+    () => (active.value[index] ? (imageIndices.value[index] ?? 0) : -1),
     (current, previous) => {
-      if (
-        current.isActive !== previous?.isActive ||
-        current.imgIndex !== previous?.imgIndex
-      ) {
+      if (current !== previous) {
         runOnJS(setImageState)({
-          visible: current.isActive ?? false,
-          imageIndex: current.imgIndex ?? 0,
+          visible: current >= 0,
+          imageIndex: Math.max(0, current),
         });
       }
     },
