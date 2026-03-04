@@ -28,11 +28,17 @@ export function useBombs() {
     characterY: SharedValue<number>,
   ): boolean => {
     "worklet";
-    const positions = bombPositions.value.slice();
+    // A new array must be assigned to SharedValue to trigger change detection,
+    // so a copy is unavoidable. Use spread instead of slice for clarity.
+    const positions = [...bombPositions.value];
     for (let i = 0; i < positions.length; i++) {
       positions[i] -= scrollSpeed.value;
       if (positions[i] < -BOMB_SIZE) {
-        const max = Math.max(...positions);
+        // Avoid Math.max(...positions) spread to reduce GC pressure.
+        let max = positions[0];
+        for (let j = 1; j < positions.length; j++) {
+          if (positions[j] > max) max = positions[j];
+        }
         const gap = randomInRange(BOMB_MIN_GAP, BOMB_MAX_GAP);
         positions[i] = max + gap;
       }

@@ -41,15 +41,21 @@ export function useItems() {
     characterY: SharedValue<number>,
   ) => {
     "worklet";
-    const itemPos = itemPositions.value.slice();
-    const itemY = itemYOffsets.value.slice();
-    const active = itemActive.value.slice();
-    const imageIndices = itemImageIndices.value.slice();
+    // A new array must be assigned to SharedValue to trigger change detection,
+    // so copies are unavoidable. Use spread instead of slice for clarity.
+    const itemPos = [...itemPositions.value];
+    const itemY = [...itemYOffsets.value];
+    const active = [...itemActive.value];
+    const imageIndices = [...itemImageIndices.value];
 
     for (let i = 0; i < itemPos.length; i++) {
       itemPos[i] -= scrollSpeed.value;
       if (itemPos[i] < -ITEM_SIZE) {
-        const max = Math.max(...itemPos);
+        // Avoid Math.max(...itemPos) spread to reduce GC pressure.
+        let max = itemPos[0];
+        for (let j = 1; j < itemPos.length; j++) {
+          if (itemPos[j] > max) max = itemPos[j];
+        }
         const gap = randomInRange(ITEM_MIN_GAP, ITEM_MAX_GAP);
         itemPos[i] = max + gap;
         itemY[i] = randomInRange(ITEM_Y_MAX, ITEM_Y_MIN);
