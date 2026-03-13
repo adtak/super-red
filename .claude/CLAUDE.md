@@ -98,6 +98,7 @@ import { ThemedText } from "@/components/themed-text";
   eas build --platform ios --profile production
   eas submit --platform ios --latest
   ```
+- GitHub Release is created automatically by GitHub Actions when a `v*` tag is pushed (e.g., `git tag v1.1.0 && git push origin v1.1.0`). Release notes are auto-generated from commits.
 
 ## Git Workflow
 
