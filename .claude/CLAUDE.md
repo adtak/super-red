@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Expo/React Native app (super-red) using Expo SDK 54, React 19, React Native 0.84, and TypeScript (strict mode). Package manager is **pnpm**.
+Expo/React Native app (super-red) — an endless-runner style mobile game. Built with Expo SDK 54, React 19, React Native 0.81, and TypeScript (strict mode). Package manager is **pnpm**.
 
 Key experimental features enabled in `app.json`:
 
@@ -43,9 +43,6 @@ pnpm format:check    # check formatting (CI)
 # Regenerate Expo Router typed routes
 # Run this after adding/removing/renaming route files in app/
 pnpm expo export --platform web
-
-# Reset project (clears template code)
-node ./scripts/reset-project.js
 ```
 
 ## Environment
@@ -58,26 +55,20 @@ node ./scripts/reset-project.js
 
 Routes live in `app/`. Directory structure maps directly to URL structure.
 
-- `app/_layout.tsx` — Root Stack with `ThemeProvider`, defines two screens: `(tabs)` and `modal`
-- `app/(tabs)/_layout.tsx` — Bottom tab navigator (Home, Explore)
-- `app/(tabs)/index.tsx` — Home screen
-- `app/(tabs)/explore.tsx` — Explore screen
-- `app/modal.tsx` — Modal screen (presented modally via Stack)
+- `app/_layout.tsx` — Root Stack navigator (headerless)
+- `app/index.tsx` — Title screen ("Tap to Start")
+- `app/game.tsx` — Main gameplay (game loop, physics, collision detection)
+- `app/game-over.tsx` — Game over screen (score, high score, retry)
 
-### Theme System
+### Game Architecture
 
-- Colors defined in `constants/theme.ts` — light/dark palettes
-- Platform-specific font families (iOS system fonts, Android defaults, web font stacks) also in `constants/theme.ts`
-- `useColorScheme()` hook returns current scheme; web version handles hydration for static rendering
-- `useThemeColor(props, colorName)` hook resolves themed colors with optional per-component overrides
-- `ThemedText` and `ThemedView` are the base themed primitives — use these instead of raw `Text`/`View`
-
-### Cross-Platform Patterns
-
-- Platform-specific files use extensions: `.ios.tsx`, `.web.ts`
-- `IconSymbol` maps SF Symbols (iOS) to Material Icons (Android/web) — mapping defined in `components/ui/icon-symbol.tsx`
-- `HapticTab` provides haptic feedback on tab press (iOS only)
-- `ExternalLink` opens in-app browser on native, default browser on web
+- **Game loop**: `hooks/use-game-loop.ts` drives frame-based updates via React Native Reanimated
+- **Physics**: `hooks/use-character-physics.ts` handles jump and gravity
+- **Obstacles & Items**: `hooks/use-bombs.ts` and `hooks/use-items.ts` manage spawning and scrolling
+- **Collision**: `utils/collision.ts` provides AABB collision detection
+- **Components**: `components/game/` contains all visual game elements (character, bombs, items, ground, clouds, mountains, houses, birds, pause overlay, score badge)
+- **Assets**: Image references centralized in `constants/assets.ts`
+- **Styling**: Colors in `constants/colors.ts`, typography in `constants/typography.ts`, game dimensions/physics in `constants/game.ts`
 
 ### Linting & Formatting
 
