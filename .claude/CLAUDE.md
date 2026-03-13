@@ -84,6 +84,13 @@ Use `@/` to import from the project root (configured in `tsconfig.json`):
 import { ThemedText } from "@/components/themed-text";
 ```
 
+## Versioning & Release
+
+- App version (`expo.version` in `app.json`) is the user-facing version (e.g., `1.1.0`). Update this manually when preparing a new release.
+- Build numbers (`buildNumber` / `versionCode`) are managed automatically by **EAS Build** — do NOT set them in `app.json`.
+  - `eas.json` has `appVersionSource: "remote"` and `autoIncrement: true` for the production profile.
+- Published to the Apple App Store via `eas submit`.
+
 ## Git Workflow
 
 ### Branching Strategy
