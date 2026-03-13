@@ -55,7 +55,7 @@ export const BIRD_PARALLAX_FACTOR = 0.5;
 export const BIRD_Y_POSITIONS = [500, 650];
 
 export const MOUNTAIN_COUNT = 2;
-export const MOUNTAIN_SIZE = { width: 200, height: 125 };
+export const MOUNTAIN_SIZE = { width: 600, height: 250 };
 export const MOUNTAIN_MIN_GAP = 150;
 export const MOUNTAIN_MAX_GAP = 400;
 export const MOUNTAIN_PARALLAX_FACTOR = 0.4;
