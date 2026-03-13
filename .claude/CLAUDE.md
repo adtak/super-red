@@ -89,7 +89,15 @@ import { ThemedText } from "@/components/themed-text";
 - App version (`expo.version` in `app.json`) is the user-facing version (e.g., `1.1.0`). Update this manually when preparing a new release.
 - Build numbers (`buildNumber` / `versionCode`) are managed automatically by **EAS Build** — do NOT set them in `app.json`.
   - `eas.json` has `appVersionSource: "remote"` and `autoIncrement: true` for the production profile.
-- Published to the Apple App Store via `eas submit`.
+- Release commands:
+  ```bash
+  # Build and auto-submit to App Store Connect in one step
+  eas build --platform ios --profile production --auto-submit
+
+  # Or separately:
+  eas build --platform ios --profile production
+  eas submit --platform ios --latest
+  ```
 
 ## Git Workflow
 
