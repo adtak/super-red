@@ -71,7 +71,6 @@ components/game/
   items.tsx         # Collectible items
   ground.tsx        # Scrolling ground
   clouds.tsx        # Scrolling cloud decorations
-  background-objects.tsx  # Parallax background decorations
 hooks/
   use-game-loop.ts          # Frame-based game loop hook
   use-character-physics.ts  # Jump physics and gravity

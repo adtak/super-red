@@ -1,6 +1,5 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
-import { BackgroundObjects } from "@/components/game/background-objects";
 import { Birds } from "@/components/game/birds";
 import { Bombs } from "@/components/game/bombs";
 import { Character } from "@/components/game/character";
@@ -50,7 +49,6 @@ export default function Game() {
         <Clouds scrollX={scrollX} />
         <Birds scrollX={scrollX} />
         <Mountains scrollX={scrollX} />
-        <BackgroundObjects scrollX={scrollX} />
         <Houses scrollX={scrollX} />
         <Bombs positions={bombPositions} />
         <Items
