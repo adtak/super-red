@@ -8,6 +8,7 @@ import { Clouds } from "@/components/game/clouds";
 import { Ground } from "@/components/game/ground";
 import { Houses } from "@/components/game/houses";
 import { Items } from "@/components/game/items";
+import { Mountains } from "@/components/game/mountains";
 import { PauseOverlay } from "@/components/game/pause-overlay";
 import { ScoreBadge } from "@/components/game/score-badge";
 import { Colors } from "@/constants/colors";
@@ -48,6 +49,7 @@ export default function Game() {
       <Animated.View style={[styles.shakeContainer, shakeStyle]}>
         <Clouds scrollX={scrollX} />
         <Birds scrollX={scrollX} />
+        <Mountains scrollX={scrollX} />
         <BackgroundObjects scrollX={scrollX} />
         <Houses scrollX={scrollX} />
         <Bombs positions={bombPositions} />
