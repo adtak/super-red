@@ -4,7 +4,7 @@ An endless-runner style mobile game built with Expo and React Native. Jump to do
 
 ## Tech Stack
 
-- **Expo SDK 54** / React Native 0.81.5 / React 19
+- **Expo SDK 54** / React Native 0.81 / React 19
 - **TypeScript** (strict mode)
 - **Expo Router** (file-based routing with typed routes)
 - **React Native Reanimated** (frame-based game loop and animations)
@@ -14,12 +14,13 @@ An endless-runner style mobile game built with Expo and React Native. Jump to do
 
 - Tap-to-start title screen
 - One-button jump gameplay with gravity physics
-- Scrolling ground, clouds, and parallax background
+- Scrolling ground with parallax background layers (mountains, houses, clouds, birds)
 - Randomly spaced bomb obstacles
-- Collectible items for scoring
+- Collectible food items for scoring
 - AABB collision detection
 - Game over effects (screen shake and flash)
-- Item-based scoring with high score tracking
+- Item-based scoring with high score tracking (score badge display)
+- Pause overlay
 - Retry from game over screen
 
 ## Getting Started
@@ -68,9 +69,16 @@ app/
 components/game/
   character.tsx     # Player character with jump animation
   bombs.tsx         # Scrolling bomb obstacles
-  items.tsx         # Collectible items
+  items.tsx         # Collectible food items
   ground.tsx        # Scrolling ground
   clouds.tsx        # Scrolling cloud decorations
+  mountains.tsx     # Parallax mountain background
+  houses.tsx        # Parallax house background
+  birds.tsx         # Flying bird decorations
+  pause-overlay.tsx # Pause screen overlay
+  score-badge.tsx   # In-game score display
+components/ui/
+  game-button.tsx   # Reusable game button component
 hooks/
   use-game-loop.ts          # Frame-based game loop hook
   use-character-physics.ts  # Jump physics and gravity
@@ -79,6 +87,7 @@ hooks/
   use-game-over-effect.ts   # Screen shake and flash effects
   use-high-score.ts         # AsyncStorage-backed high score persistence
 constants/
+  assets.ts         # Image asset references
   game.ts           # Game physics and dimensions
   colors.ts         # Color palette
   typography.ts     # Font families and text styles
