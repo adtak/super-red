@@ -84,6 +84,22 @@ Use `@/` to import from the project root (configured in `tsconfig.json`):
 import { ThemedText } from "@/components/themed-text";
 ```
 
+## Versioning & Release
+
+- App version (`expo.version` in `app.json`) is the user-facing version (e.g., `1.1.0`). Update this manually when preparing a new release.
+- Build numbers (`buildNumber` / `versionCode`) are managed automatically by **EAS Build** — do NOT set them in `app.json`.
+  - `eas.json` has `appVersionSource: "remote"` and `autoIncrement: true` for the production profile.
+- Release commands:
+  ```bash
+  # Build and auto-submit to App Store Connect in one step
+  eas build --platform ios --profile production --auto-submit
+
+  # Or separately:
+  eas build --platform ios --profile production
+  eas submit --platform ios --latest
+  ```
+- GitHub Release is created automatically by GitHub Actions when a `v*` tag is pushed (e.g., `git tag v1.1.0 && git push origin v1.1.0`). Release notes are auto-generated from commits.
+
 ## Git Workflow
 
 ### Branching Strategy
